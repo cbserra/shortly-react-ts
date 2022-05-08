@@ -40,6 +40,7 @@ section.shorten-resp-container {
         width: 85%;
         height: 168px;
         background: url('../images/bg-shorten-desktop.svg') var(--dark-violet);
+        background-size: cover;
         padding: 25px 50px;
     }
 

@@ -1,9 +1,6 @@
-import useAxios from 'axios-hooks'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ShortenResultCard from './ShortenResultCard'
 import './ShortenSection.css'
-const axios = require('axios');
-
 
 export interface ShortenResponse {
     "ok": boolean,
@@ -22,79 +19,56 @@ export interface ShortenResult  {
 }
 
 const ShortenSection = () => {
-    const [shortenedRes, setShortenedRes] = useState<ShortenResponse[]>([])
     const [response, setResponse] = useState<any>()
-    const [responses, setResponses] = useState<any[]>([])
     const [inputUrl, setInputUrl] = useState<string>('')
     const [shortenResultCards, setShortenResultCards] = useState<JSX.Element[]>([])
     const [errorMessage, setErrorMessage] = useState<string>('')
 
-    // const [{ data: getData, loading: getLoading, error: getError }, getShortenedUrl] = useAxios({
-    //     method: 'get',
-    //     url: `https://api.shrtco.de/v2/shorten?url=${inputUrl}`,
-    // },
-    // { 
-    //     manual: true 
-    // })
-
-    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     // console.log('targetValue = ' + event.target.value)
-    // const [{ data: getData, loading: getLoading, error: getError }, getShortenedUrl] = useAxios({
-    //     method: 'get',
-    //     url: `https://api.shrtco.de/v2/shorten?url=${inputUrl}`,
-    // },
-    // { 
-    //     manual: true 
-    // })
-
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        // console.log('targetValue = ' + event.target.value)
         setInputUrl(event.target.value)
     }
 
-    // const handleCall = () => {
-    //     console.log("calling handleCall")
-    //     console.log(getShortenedUrl())
-
-    //     if (getData?.data.ok) {
-    //         setShortenedRes((res) => [...res, getData.data])
-    //     }
-        
-
-    //     // setShortenResultCards(((currentCards) => [...currentCards,
-    //     // shortenedRes?.result]))
-    // }
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        console.log('inside handleSubmit')
-       
-        fetch(`https://api.shrtco.de/v2/shorten?url=${inputUrl}`, 
-        {
-            method: "GET",
-        })
-        .then(response => response.json())
-        .then(data  => {
-            console.log(data.result)
-            setResponse(data.result)
-            setResponses((prevResponses) => [...prevResponses, data.result])
+        e.preventDefault();
 
-            let cards:JSX.Element[] = responses.map((response, index) => {
-                return <ShortenResultCard 
-                            key={index} 
-                            shortUrl={response.short_link} 
-                            targetUrl={response.original_link} />
+        try {
+            fetch(`https://api.shrtco.de/v2/shorten?url=${inputUrl}`, 
+            {
+                method: "GET",
             })
-            setShortenResultCards(cards)
-                    
-            console.log(shortenResultCards)
-        })
-        .catch(error => {
+            .then(response => response.json())
+            .then(data  => {
+                console.debug(data.result)
+                setResponse(data.result)
+            })
+            .catch(error => {
+                console.error(error)
+                setErrorMessage(error)
+            })
+        } catch(error: any) {
             console.error(error)
             setErrorMessage(error)
-        })
+        }
 
-        e.preventDefault();
     }
+
+    useEffect(() => {
+        async function getShortenResponse() {
+            if (response) {
+                let newCard:JSX.Element = 
+                    <ShortenResultCard 
+                                key={shortenResultCards.length + 1} 
+                                shortUrl={response.short_link} 
+                                targetUrl={response.original_link}
+                                shareLink={response.share_link} />
+                
+                setShortenResultCards((prevCards) => [...prevCards, newCard])
+                console.debug(shortenResultCards)
+            }
+        }
+    
+        getShortenResponse();
+      }, [response]);
 
     return (
         <section className="shorten-url-container">
