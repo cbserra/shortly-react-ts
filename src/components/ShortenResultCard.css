@@ -16,6 +16,7 @@ button.copy-btn {
     border-radius: 5px;
     text-align: center;
     border: 0;
+    height: 40px;
 }
 
 button.copy-btn:active {
@@ -59,7 +60,6 @@ button.copy-btn:active {
     button.copy-btn {
         font-size: 15px;
         line-height: 22px;
-        height: 40px;
         width: 103px;
         margin: 16px 24px;
     }
@@ -73,7 +73,7 @@ button.copy-btn:active {
     }
 
     span.target-url {
-
+        width: 100%;
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -82,10 +82,14 @@ button.copy-btn:active {
 
         letter-spacing: 0.12px;
 
-        color: #34313D;
+        color: var(--very-dark-blue);
+        border-bottom: .5px solid var(--dark-gray-25-alpha);
+        text-align: left;
+        padding: 5px 15px;
     }
 
     span.short-url {
+        width: 100%;
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -95,11 +99,16 @@ button.copy-btn:active {
         letter-spacing: 0.12px;
     
         color: var(--cyan);
+        border-top: .5px solid var(--dark-gray-25-alpha);
+        text-align: left;
+        padding: 5px 15px;
     }
 
     button.copy-btn {   
+        width: 90%;
         font-size: 16px;
         line-height: 24px;
+        margin: 0 15px 15px 15px;
     }
 
 

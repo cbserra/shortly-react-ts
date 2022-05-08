@@ -8,6 +8,12 @@ section.shorten-url-container {
     transform: translateY(-90px);
 }
 
+section.shorten-form-elements {
+    width: 85%;
+    padding: 25px 50px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
 form.shorten-form {
     width: 100%;
     display: flex;
@@ -34,9 +40,7 @@ section.shorten-resp-container {
         width: 85%;
         height: 168px;
         background: url('../images/bg-shorten-desktop.svg') var(--dark-violet);
-        border-radius: 10px;
         padding: 25px 50px;
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     }
 
     form.shorten-form input.url-text {
@@ -80,22 +84,27 @@ section.shorten-resp-container {
         justify-content: space-around;
         flex-direction: column;
         width: 85%;
-        height: 168px;
+        height: 160px;
         background: url('../images/bg-shorten-mobile.svg') var(--dark-violet);
         background-size: cover;
-        border-radius: 10px;
-        transform: translateY(-90px);
         padding: 25px;
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+
+    form.shorten-form {
+        flex-direction: column;
+    }
+
+    form.shorten-form input {
+        height: 48px;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
     }
 
     form.shorten-form input.url-text {
-        width: 100%;
-        height: 64px;
-        border-radius: 5px;
         font-style: normal;
         font-weight: 500;
-        font-size: 20px;
+        font-size: 16px;
         line-height: 36px;
         /* identical to box height, or 180% */
         letter-spacing: 0.15px;
@@ -104,19 +113,13 @@ section.shorten-resp-container {
         margin-bottom: 10px;
     }
 
-    form.shorten-form input {
-        border: none;
-    }
 
     form.shorten-form input.submit-btn {
         background-color: var(--cyan);
-        border-radius: 5px;
-        width: 100%;
-        height: 64px;
         font-style: normal;
         font-weight: 700;
-        font-size: 20px;
-        line-height: 30px;
+        font-size: 18px;
+        line-height: 27px;
         /* identical to box height */
         color: var(--pretty-darn-white);
         margin-top: 10px;
