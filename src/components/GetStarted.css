@@ -1,0 +1,109 @@
+figure.text button {
+    background: var(--cyan);
+    border-radius: 28px;
+    border: none;
+    padding: 10px 30px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--pretty-darn-white);
+    /* identical to box height */
+}
+
+@media (min-width: 1024px) {
+    section.get-started {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        left: 158px;
+    }
+
+    figure.text {
+        width: 564px;
+        text-align: left;
+    }
+
+    figure.text h1 {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 80px;
+        line-height: 90px;
+        /* or 112% */
+        letter-spacing: -2px;
+        color: var(--very-dark-blue);
+        margin: 0;
+    }
+
+    figure.text p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 36px;
+        /* or 164% */
+        letter-spacing: 0.15px;
+        color: var(--grayish-violet);
+        width: 90%;
+        margin-top: 0;
+    }
+
+    figure.image {
+        width: 733px;
+        margin-left: auto;
+    }
+
+}
+
+@media (max-width: 1023px) {
+    section.get-started {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column-reverse;
+        width: 100%;
+        position: relative;
+    }
+
+    section.get-started figure {
+        margin-top: 50px;
+    }
+
+    figure.image {
+        width: 325px;
+        margin: auto 50px;
+    }
+
+    figure.image img {
+        /* width: 327px; */
+        height: 270px;
+    }
+
+    figure.text {
+        width: 325px;
+        text-align: center;
+    }
+
+    figure.text h1 {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 42px;
+        line-height: 48px;
+        text-align: center;
+        letter-spacing: -1.05px;
+        margin: 0;
+    }
+
+    figure.text p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 30px;
+        text-align: center;
+        letter-spacing: 0.122727px;
+        /* width: 90%; */
+        color: var(--grayish-violet);
+    }
+
+}

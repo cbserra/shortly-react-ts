@@ -1,0 +1,106 @@
+div.shorten-result-card {
+    background: #FFFFFF;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 16px 0;
+}
+
+button.copy-btn {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--pretty-darn-white);
+    background: var(--cyan);
+    border-radius: 5px;
+    text-align: center;
+    border: 0;
+}
+
+button.copy-btn:active {
+    background: var(--very-dark-blue);
+}
+
+@media (min-width: 1024px) {
+
+    div.shorten-result-card {
+        height: 72px;
+    }
+
+    span.target-url {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 36px;
+        /* identical to box height, or 180% */
+
+        letter-spacing: 0.15px;
+
+        color: var(--dark-violet);
+        margin: 18px 32px;
+    }
+
+    span.short-url {
+
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 36px;
+        /* identical to box height, or 180% */
+
+        text-align: right;
+        letter-spacing: 0.15px;
+
+        color: var(--cyan);
+        margin: 18px 0px 18px auto;
+    }
+
+    button.copy-btn {
+        font-size: 15px;
+        line-height: 22px;
+        height: 40px;
+        width: 103px;
+        margin: 16px 24px;
+    }
+
+}
+
+@media (max-width: 1023px) {
+
+    div.shorten-result-card {
+        flex-direction: column;
+    }
+
+    span.target-url {
+
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 36px;
+        /* identical to box height, or 225% */
+
+        letter-spacing: 0.12px;
+
+        color: #34313D;
+    }
+
+    span.short-url {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 36px;
+        /* identical to box height, or 225% */
+    
+        letter-spacing: 0.12px;
+    
+        color: var(--cyan);
+    }
+
+    button.copy-btn {   
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+
+}

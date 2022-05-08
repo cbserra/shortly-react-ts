@@ -1,0 +1,188 @@
+article.brand-recognition header div.icon {
+    background: url('../images/icon-brand-recognition.svg') center no-repeat;
+}
+
+article.detailed-records header div.icon {
+    background: url('../images/icon-detailed-records.svg') center no-repeat;
+}
+
+article.fully-customizable header div.icon {
+    background: url('../images/icon-fully-customizable.svg') center no-repeat;
+}
+
+@media (min-width: 1024px) {
+    section.statistics {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    section.statistics header {
+        width: 540px;
+    }
+    
+    section.statistics header h2 {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 48px;
+        /* identical to box height, or 120% */
+    
+        text-align: center;
+        letter-spacing: -1px;
+    
+        color: var(--very-dark-blue)
+    }
+    
+    section.statistics header p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 32px;
+        /* or 178% */
+    
+        text-align: center;
+        letter-spacing: 0.122727px;
+    
+        color: #9E9AA8;
+    }
+    
+    section.articles {
+        background: url('../images/cyan-line.svg') center no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 400px;
+        margin-top: 50px;
+    }
+    
+    section.articles article {
+        height: 267px;
+        width: 350px;
+        background: var(--pretty-darn-white);
+        border-radius: 5px;
+        text-align: left;
+        margin: 15px;
+    }
+    
+    section.articles > article:nth-child(1) {
+        align-self: flex-start;
+    }
+    
+    section.articles > article:nth-child(3) {
+        align-self: flex-end;
+    }
+    
+    section.articles > article:nth-child(2) {
+        align-self: center;
+    }
+    
+    section.articles article header div.icon {
+        background-color: var(--dark-violet);
+        border-radius: 50%;
+        height: 88px;
+        width: 88px;
+        margin: 0 15px -25px 15px;
+        transform: translateY(-50px);
+    }
+    
+
+    
+    section.articles article header h3 {
+        margin: 15px;
+    }
+    
+    section.articles article main {
+        margin: 15px;
+    }
+}
+
+@media (max-width: 1023px) {
+
+    section.statistics {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+    }
+    
+    section.statistics header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    
+    section.statistics header h2 {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 48px;
+        /* identical to box height, or 171% */
+        
+        text-align: center;
+        letter-spacing: -0.7px;
+        margin: 0%;
+    
+        color: var(--very-dark-blue)
+    }
+    
+    section.statistics header p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 28px;
+        /* or 175% */
+        
+        text-align: center;
+        letter-spacing: 0.109091px;
+    
+        color: #9E9AA8;
+    }
+    
+    section.articles {
+        background: url('../images/vertical-cyan-line.svg') center no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-bottom: 0;
+    }
+    
+    section.articles article {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 325px;
+        background: var(--pretty-darn-white);
+        border-radius: 5px;
+        /* text-align: center; */
+        margin: 50px 15px 50px 15px;
+    }
+    
+    section.articles article header div.icon {
+        background-color: var(--dark-violet);
+        border-radius: 50%;
+        height: 88px;
+        width: 88px;
+        margin: 0 15px -25px 15px;
+        transform: translateY(-50px);
+        align-self: center;
+    }
+
+    section.articles article.fully-customizable {
+        margin-bottom: 0;
+    }
+    
+    section.articles article header h3 {
+        margin: 15px;
+    }
+    
+    section.articles article main {
+        margin: 0 15px 15px 15px;
+    }
+}

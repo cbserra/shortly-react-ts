@@ -1,0 +1,63 @@
+import 'normalize.css'
+import './App.css';
+import Nav from './Nav'
+import GetStarted from './GetStarted';
+import ShortenSection from './ShortenSection';
+import Statistics from './Statistics';
+import { useMediaQuery } from 'react-responsive';
+import { useEffect, useState } from 'react';
+
+function App() {
+  const isDesktop = useMediaQuery({query: '(min-width: 1024px)' })
+  const isMobile = useMediaQuery({ query: '(max-width: 1023px)' })
+  const [toggleMenuDisplay, setToggleMenuDisplay] = useState(false)
+
+  const listenToScroll = () => {
+    let heightToHideFrom = 100;
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+
+    if (winScroll > heightToHideFrom) {  
+        console.log('toggleMenuDisplay = ' + toggleMenuDisplay)
+        if (toggleMenuDisplay) {
+            setToggleMenuDisplay(false);
+        }
+    }
+  };
+
+  useEffect(() => {   
+      window.addEventListener("scroll", listenToScroll);
+      return () => 
+          window.removeEventListener("scroll", listenToScroll); 
+  })
+
+
+  const toggleMobileMenu = () => {
+      console.log(`prevValue = ${toggleMenuDisplay}, setting to ${!toggleMenuDisplay}`)
+      setToggleMenuDisplay((prevValue) => !prevValue) 
+      console.log(`after setting !prevValue: ${toggleMenuDisplay}`)
+  }
+
+   
+  return (
+    <div className="App">
+      <header className="app-header">
+        <Nav 
+          isMobile={isMobile} 
+          isDesktop={isDesktop}
+          toggleMenu={toggleMenuDisplay} 
+          toggleMenuFun={setToggleMenuDisplay}
+          toggleMobileMenuFun={toggleMobileMenu} />
+        <GetStarted />
+      </header>
+      <main className="app-main">
+        <ShortenSection />
+        <Statistics />
+      </main>
+      <footer className="app-footer">
+
+      </footer>
+    </div>
+  );
+}
+
+export default App;
