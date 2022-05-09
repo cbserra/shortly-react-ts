@@ -1,5 +1,5 @@
 div.shorten-result-card {
-    background: #FFFFFF;
+    background: var(--pretty-darn-white);
     border-radius: 5px;
     width: 100%;
     display: flex;
@@ -17,10 +17,11 @@ button.copy-btn {
     text-align: center;
     border: 0;
     height: 40px;
+    transition: .5s;
 }
 
-button.copy-btn:active {
-    background: var(--very-dark-blue);
+button.copy-btn.click {
+    background-color: var(--dark-violet);
 }
 
 @media (min-width: 1024px) {
@@ -105,10 +106,10 @@ button.copy-btn:active {
     }
 
     button.copy-btn {   
-        width: 90%;
         font-size: 16px;
         line-height: 24px;
-        margin: 0 15px 15px 15px;
+        margin-bottom: 15px;
+        width: 95%;
     }
 
 

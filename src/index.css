@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  transform: .5s;
 }
 
 html, body {
@@ -45,6 +46,7 @@ div#root {
   --very-dark-violet: hsl(260, 8%, 14%);
   --pretty-darn-white: hsla(0, 0%, 100%, 1);
   --light-gray: hsla(0, 0%, 95%, 1);
+  --error-red:  hsl(0, 87%, 67%);
 
 
 }
