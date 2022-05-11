@@ -3,14 +3,14 @@ import logo from '../images/logo.svg'
 
 const Footer = () => {
     return (
-        <footer className='footer-container'>
+        <section className='footer-container'>
             <div className='footer-elements'>
                 <div className='list-container footer-logo'>
                     <img src={logo} alt="shortly logo" />
                 </div>
                 
                 <div className='list-container'>
-                    <h3>Features</h3>
+                    <h1>Features</h1>
                     <ul>
                         <li>Link Shortening</li>
                         <li>Branded Links</li>
@@ -19,7 +19,7 @@ const Footer = () => {
                 </div>
 
                 <div className='list-container'>
-                    <h3>Resource</h3>
+                    <h1>Resource</h1>
                     <ul>
                         <li>Blog</li>
                         <li>Developers</li>
@@ -28,7 +28,7 @@ const Footer = () => {
                 </div>
 
                 <div className='list-container'>
-                    <h3>Company</h3>
+                    <h1>Company</h1>
                     <ul>
                         <li>About</li>
                         <li>Our Team</li>
@@ -44,7 +44,7 @@ const Footer = () => {
                     <i className="fa-brands fa-instagram fa-lg"></i>
                 </div>
             </div>
-        </footer>
+        </section>
     )
 }
 

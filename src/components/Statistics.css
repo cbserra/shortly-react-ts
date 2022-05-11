@@ -1,31 +1,44 @@
-article.brand-recognition header div.icon {
-    background: url('../images/icon-brand-recognition.svg') center no-repeat;
+#brand-recognition header div.icon {
+    background: url('../images/icon-brand-recognition.svg') var(--dark-violet) center no-repeat;
 }
 
-article.detailed-records header div.icon {
-    background: url('../images/icon-detailed-records.svg') center no-repeat;
+#detailed-records header div.icon {
+    background: url('../images/icon-detailed-records.svg') var(--dark-violet) center no-repeat;
 }
 
-article.fully-customizable header div.icon {
-    background: url('../images/icon-fully-customizable.svg') center no-repeat;
+#fully-customizable header div.icon {
+    background: url('../images/icon-fully-customizable.svg') var(--dark-violet) center no-repeat;
 }
 
-section.statistics {
+div.statistics {
     margin-block: 50px;
 }
 
+div.article header h2 {
+    font-size: 22px;
+    line-height: 33px;
+}
+
+div.article div.text p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 26px;
+    color: var(--grayish-violet);
+}
+
 @media (min-width: 1024px) {
-    section.statistics {
+    div.statistics {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
     
-    section.statistics header {
+    div.statistics header {
         width: 540px;
     }
     
-    section.statistics header h2 {
+    div.statistics header h1 {
         font-style: normal;
         font-weight: 700;
         font-size: 40px;
@@ -38,7 +51,7 @@ section.statistics {
         color: var(--very-dark-blue)
     }
     
-    section.statistics header p {
+    div.statistics header p {
         font-style: normal;
         font-weight: 500;
         font-size: 18px;
@@ -51,7 +64,7 @@ section.statistics {
         color: #9E9AA8;
     }
     
-    section.articles {
+    div.articles {
         background: url('../images/cyan-line.svg') center no-repeat;
         display: flex;
         align-items: center;
@@ -60,7 +73,7 @@ section.statistics {
         margin-top: 50px;
     }
     
-    section.articles article {
+    div.article {
         height: 267px;
         width: 350px;
         background: var(--pretty-darn-white);
@@ -69,19 +82,19 @@ section.statistics {
         margin: 15px;
     }
     
-    section.articles > article:nth-child(1) {
+    div.articles > div:nth-child(1) {
         align-self: flex-start;
     }
     
-    section.articles > article:nth-child(3) {
+    div.articles > div:nth-child(3) {
         align-self: flex-end;
     }
     
-    section.articles > article:nth-child(2) {
+    div.articles > div:nth-child(2) {
         align-self: center;
     }
     
-    section.articles article header div.icon {
+    div.article header div.icon {
         background-color: var(--dark-violet);
         border-radius: 50%;
         height: 88px;
@@ -90,18 +103,18 @@ section.statistics {
         transform: translateY(-50px);
     }
     
-    section.articles article header h3 {
+    div.article header h2 {
         margin: 15px;
     }
     
-    section.articles article main {
+    div.article div.text {
         margin: 15px;
     }
 }
 
 @media (max-width: 1023px) {
 
-    section.statistics {
+    div.statistics {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -110,7 +123,7 @@ section.statistics {
         margin-block: 50px;
     }
     
-    section.statistics header {
+    div.statistics header {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -119,7 +132,7 @@ section.statistics {
         text-align: center;
     }
     
-    section.statistics header h2 {
+    div.statistics header h1 {
         font-style: normal;
         font-weight: 700;
         font-size: 28px;
@@ -133,7 +146,7 @@ section.statistics {
         color: var(--very-dark-blue)
     }
     
-    section.statistics header p {
+    div.statistics header p {
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -146,7 +159,7 @@ section.statistics {
         color: #9E9AA8;
     }
     
-    section.articles {
+    div.articles {
         background: url('../images/vertical-cyan-line.svg') center no-repeat;
         display: flex;
         align-items: center;
@@ -155,7 +168,7 @@ section.statistics {
         padding-bottom: 0;
     }
     
-    section.articles article {
+    div.article {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -167,7 +180,7 @@ section.statistics {
         margin: 50px 15px 50px 15px;
     }
     
-    section.articles article header div.icon {
+    div.article header div.icon {
         background-color: var(--dark-violet);
         border-radius: 50%;
         height: 88px;
@@ -177,15 +190,15 @@ section.statistics {
         align-self: center;
     }
 
-    section.articles article.fully-customizable {
+    #fully-customizable {
         margin-bottom: 0;
     }
     
-    section.articles article header h3 {
+    div.article header h2 {
         margin: 15px;
     }
     
-    section.articles article main {
+    div.article div.text {
         margin: 0 15px 15px 15px;
     }
 }

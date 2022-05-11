@@ -34,7 +34,7 @@
     list-style-type: none;
 }
 
-.list-container h3 {
+.list-container h1 {
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -67,7 +67,7 @@
         text-align: left;
     }
     
-    .list-container h3 {
+    .list-container h1 {
         text-align: left;
     }
     
@@ -98,7 +98,7 @@
         margin-block-end: 0;
     }
 
-    .list-container h3, .list-container ul li {
+    .list-container h1, .list-container ul li {
         text-align: center;
     }
 

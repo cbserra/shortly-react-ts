@@ -2,59 +2,59 @@ import './Statistics.css'
 
 const Statistics = () => {
     return (
-        <section className="statistics">
+        <div className="statistics">
             <header>
-                <h2>Advanced Statistics</h2>
+                <h1>Advanced Statistics</h1>
 
                 <p>Track how your links are performing across the web with our 
                 advanced statistics dashboard.</p>
             </header>
 
-            <section className="articles">
-                <article className="brand-recognition">
+            <div className="articles">
+                <div className="article" id="brand-recognition">
                     <header>
                         <div className="icon">
                             {/* <img src={brandRecognition} alt="" /> */}
                         </div>
-                        <h3>Brand Recognition</h3>
+                        <h2>Brand Recognition</h2>
                     </header>
-                    <main>
+                    <div className="text">
                         <p> 
                             Boost your brand recognition with each click. 
                             Generic links don’t mean a thing. 
                             Branded links help instil confidence in your content.
                         </p>
-                    </main>
-                </article>
+                    </div>
+                </div>
 
-                <article className="detailed-records">
+                <div className="article" id="detailed-records">
                     <header>
                         <div className="icon"></div>
-                        <h3>Detailed Records</h3>
+                        <h2>Detailed Records</h2>
                     </header>
-                    <main>
+                    <div className="text">
                         <p>
                             Gain insights into who is clicking your links. 
                             Knowing when and where people engage with your content helps inform better decisions.
                         </p>
-                    </main>
-                </article>
+                    </div>
+                </div>
 
-                <article className="fully-customizable">
+                <div className="article" id="fully-customizable">
                     <header>
                         <div className="icon"></div>
-                        <h3>Fully Customizable</h3>
+                        <h2>Fully Customizable</h2>
                     </header>
-                    <main>
+                    <div className="text">
                         <p>
                             Improve brand awareness and content discoverability 
                             through customizable links, supercharging audience engagement.
                         </p>
-                    </main>
-                </article>
-            </section>
+                    </div>
+                </div>
+            </div>
 
-        </section>
+        </div>
     )
 }
 

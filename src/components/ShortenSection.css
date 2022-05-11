@@ -1,4 +1,4 @@
-section.shorten-url-container {
+div.shorten-url-container {
     position: relative;
     display: flex;
     align-items: center;
@@ -9,7 +9,7 @@ section.shorten-url-container {
     margin-bottom: -90px;
 }
 
-section.shorten-form-elements {
+div.shorten-form-elements {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,7 +54,7 @@ form.shorten-form > input:required:valid::before {
     color: var(--valid-green); */
 }
 
-section.shorten-resp-container {
+div.shorten-resp-container {
     margin: 24px 0;
 }
 
@@ -82,7 +82,7 @@ span.error-message {
 
 @media (min-width: 1024px) {
 
-    section.shorten-form-elements {
+    div.shorten-form-elements {
         justify-content: space-around;
         height: 168px;
         background: url('../images/bg-shorten-desktop.svg') var(--dark-violet);
@@ -110,7 +110,7 @@ span.error-message {
         line-height: 30px;
     }
 
-    section.shorten-resp-container {
+    div.shorten-resp-container {
         width: 80%;
     }
 
@@ -135,7 +135,7 @@ span.error-message {
 
 @media (max-width: 1023px) {
 
-    section.shorten-form-elements {
+    div.shorten-form-elements {
         position: relative;
         display: flex;
         align-items: center;
@@ -176,7 +176,7 @@ span.error-message {
         order: 3;
     }
 
-    section.shorten-resp-container {
+    div.shorten-resp-container {
         width: 90%;
     }
 

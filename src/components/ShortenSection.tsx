@@ -135,8 +135,8 @@ const ShortenSection = () => {
       }, [shortenResponses]);
 
     return (
-        <section className="shorten-url-container">
-            <section className="shorten-form-elements">
+        <div className="shorten-url-container">
+            <div className="shorten-form-elements">
                 <form className="shorten-form" onSubmit={handleSubmit(onSubmitHandler)} noValidate>
                     <input 
                         {...register("urlText", {
@@ -173,13 +173,13 @@ const ShortenSection = () => {
                         )}
                     </div>
                 </form>
-            </section>
+            </div>
             { shortenResultCards && (
-                <section className='shorten-resp-container'>
+                <div className='shorten-resp-container'>
                     {shortenResultCards}
-                </section>
+                </div>
             )}
-        </section>
+        </div>
         
     )
 }
