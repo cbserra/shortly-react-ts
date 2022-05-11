@@ -2,7 +2,7 @@
 
 * {
   box-sizing: border-box;
-  transform: .5s;
+  transition: .5s;
 }
 
 html, body {
@@ -44,9 +44,9 @@ div#root {
   --grayish-violet: hsl(257, 7%, 63%);
   --very-dark-blue: hsl(255, 11%, 22%);
   --very-dark-violet: hsl(260, 8%, 14%);
-  --pretty-darn-white: hsla(0, 0%, 100%, 1);
+  --pretty-darn-white: rgb(255, 255, 255);
   --light-gray: hsla(0, 0%, 95%, 1);
   --error-red:  hsl(0, 87%, 67%);
-
-
+  --valid-green: hsl(120, 100%, 20%);
+  --nearly-black: hsla(257, 8%, 14%, 1);
 }

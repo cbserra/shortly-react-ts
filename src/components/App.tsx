@@ -6,6 +6,8 @@ import ShortenSection from './ShortenSection';
 import Statistics from './Statistics';
 import { useMediaQuery } from 'react-responsive';
 import { useEffect, useState } from 'react';
+import BoostLinks from './BoostLinks';
+import Footer from './Footer';
 
 function App() {
   const isDesktop = useMediaQuery({query: '(min-width: 1024px)' })
@@ -54,7 +56,8 @@ function App() {
         <Statistics />
       </main>
       <footer className="app-footer">
-
+        <BoostLinks />
+        <Footer />
       </footer>
     </div>
   );

@@ -1,11 +1,12 @@
-import React from "react"
+import React, { RefObject } from "react"
 import './ShortenResultCard.css'
 
 const ShortenResultCard = (props : { 
     key: string,
     targetUrl: string, 
     shortUrl: string, 
-    shareLink: string
+    shareLink: string,
+    refProp: RefObject<HTMLDivElement> | null
 }) => {
 
     const shareLink = props.shareLink
@@ -14,7 +15,7 @@ const ShortenResultCard = (props : {
         const initButtonValue = buttonElem.textContent
         const initClassName = buttonElem.className
 
-        navigator.clipboard.writeText(shareLink)
+        navigator.clipboard.writeText(props.shortUrl)
             .then(value => {
                 buttonElem.textContent = 'Copied!'
                 buttonElem.className += ' click'
@@ -26,7 +27,7 @@ const ShortenResultCard = (props : {
     }
 
     return (
-        <div className="shorten-result-card">
+        <div className="shorten-result-card" ref={props.refProp}>
             <span className="target-url">{props.targetUrl}</span>
             <span className="short-url">{props.shortUrl}</span>
             <button className="copy-btn" onClick={copyUrl}>Copy</button>

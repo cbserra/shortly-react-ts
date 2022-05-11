@@ -86,8 +86,6 @@ article.fully-customizable header div.icon {
         transform: translateY(-50px);
     }
     
-
-    
     section.articles article header h3 {
         margin: 15px;
     }
@@ -105,6 +103,7 @@ article.fully-customizable header div.icon {
         align-items: center;
         justify-content: center;
         width: 90%;
+        margin-block: 50px;
     }
     
     section.statistics header {
