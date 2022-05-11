@@ -6,6 +6,7 @@ section.shorten-url-container {
     justify-content: center;
     width: 100vw;
     transform: translateY(-90px);
+    margin-bottom: -90px;
 }
 
 section.shorten-form-elements {

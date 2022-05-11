@@ -21,7 +21,8 @@ const Nav = (props: {
         <nav>
             <img src={shortlyLogo} alt="shortly" />
             { isDesktop && (
-                <Menu toggleMenu={true} />
+                // <Menu toggleMenu={true} />
+                <Menu />
             )}
             { isMobile && (
                 <>

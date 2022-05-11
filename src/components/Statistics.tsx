@@ -1,7 +1,4 @@
-import React from "react";
-import { ReactDOM } from "react";
 import './Statistics.css'
-import brandRecognition from '../images/icon-brand-recognition.svg'
 
 const Statistics = () => {
     return (

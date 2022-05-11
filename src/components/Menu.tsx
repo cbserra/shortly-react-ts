@@ -1,10 +1,9 @@
-import React from 'react'
-import { ReactDOM } from 'react'
 import './Menu.css'
 
-const Menu = (props : {toggleMenu: boolean}) => {
+const Menu = (props : {toggleMenu?: boolean | undefined}) => {
+    const menuClass = props.toggleMenu === undefined ? '' : (props.toggleMenu ? 'show' : 'hide')
     return (
-        <ul id="nav-menu" className={ props.toggleMenu ? 'show' : 'hide'}>
+        <ul id="nav-menu" className={menuClass}>
             <li id="features-link">Features</li>
             <li id="pricing-link">Pricing</li>
             <li id="resources-link">Resources</li>

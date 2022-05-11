@@ -5,11 +5,9 @@ const ShortenResultCard = (props : {
     key: string,
     targetUrl: string, 
     shortUrl: string, 
-    shareLink: string,
     refProp: RefObject<HTMLDivElement> | null
 }) => {
 
-    const shareLink = props.shareLink
     function copyUrl(event: any) {
         const buttonElem = event.target
         const initButtonValue = buttonElem.textContent

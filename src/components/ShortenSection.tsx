@@ -32,7 +32,7 @@ type FormInputs = {
 const ShortenSection = () => {
     const [shortenResponses, setShortenResponses] = useState<ShortenSuccessResponse[]>()
     const [shortenResultCards, setShortenResultCards] = useState<JSX.Element[]>([])
-    const { register, resetField, handleSubmit, setError, watch, formState: { errors, isDirty, isValid } } = useForm({
+    const { register, handleSubmit, setError, formState: { errors } } = useForm({
             mode: "onSubmit",
             reValidateMode: "onChange",
             defaultValues: {
@@ -124,7 +124,6 @@ const ShortenSection = () => {
                                                 key={result.code} 
                                                 shortUrl={result.short_link} 
                                                 targetUrl={result.original_link}
-                                                shareLink={result.share_link} 
                                                 refProp={index === json.length - 1 ? scrollToRef : null}/>)                    
                 console.log(cards)
                 setShortenResultCards(cards)
