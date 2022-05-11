@@ -34,9 +34,7 @@ function App() {
 
 
   const toggleMobileMenu = () => {
-      console.log(`prevValue = ${toggleMenuDisplay}, setting to ${!toggleMenuDisplay}`)
       setToggleMenuDisplay((prevValue) => !prevValue) 
-      console.log(`after setting !prevValue: ${toggleMenuDisplay}`)
   }
 
    

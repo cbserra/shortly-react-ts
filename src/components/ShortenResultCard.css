@@ -72,41 +72,37 @@ button.copy-btn.click {
     }
 
     span.target-url {
-        width: 100%;
+        width: 90%;
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
         line-height: 36px;
-        /* identical to box height, or 225% */
         overflow-wrap: break-word;
         letter-spacing: 0.12px;
         color: var(--very-dark-blue);
         border-bottom: .5px solid var(--dark-gray-25-alpha);
         text-align: left;
-        padding: 5px 15px;
+        padding-block: 5px;
     }
 
     span.short-url {
-        width: 100%;
+        width: 90%;
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
         line-height: 36px;
-        /* identical to box height, or 225% */
-    
         letter-spacing: 0.12px;
-    
         color: var(--cyan);
         border-top: .5px solid var(--dark-gray-25-alpha);
         text-align: left;
-        padding: 5px 15px;
+        padding-block: 5px;
     }
 
     button.copy-btn {   
         font-size: 16px;
         line-height: 24px;
         margin-bottom: 15px;
-        width: 95%;
+        width: 90%;
     }
 
 

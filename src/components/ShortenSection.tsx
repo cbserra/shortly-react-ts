@@ -140,24 +140,23 @@ const ShortenSection = () => {
                 <form className="shorten-form" onSubmit={handleSubmit(onSubmitHandler)} noValidate>
                     <input 
                         {...register("urlText", {
-                                required: "Please add a link",
-                                pattern: {
-                                    value: /^http(s?):\/\/.*/,
-                                    message: "URL must begin with 'http://' or 'https://'!",
-                                },
-                                validate: {
-                                    urlExists: (value: string) => {
-                                        console.log(`value: ${value}, shortenResponses: ${JSON.stringify(shortenResponses)} `)
-                                        let result = true
-                                        if (shortenResponses && shortenResponses?.length > 0) {
-                                            result = !shortenResponses.some(res => res.result.original_link === value)
-                                        }
-
-                                        return result || 'That URL already exists!'
+                            required: "Please add a link",
+                            pattern: {
+                                value: /^http(s?):\/\/.*/,
+                                message: "URL must begin with 'http://' or 'https://'!",
+                            },
+                            validate: {
+                                urlExists: (value: string) => {
+                                    console.log(`value: ${value}, shortenResponses: ${JSON.stringify(shortenResponses)} `)
+                                    let result = true
+                                    if (shortenResponses && shortenResponses?.length > 0) {
+                                        result = !shortenResponses.some(res => res.result.original_link === value)
                                     }
-                                }                                
-                            })
-                        } 
+
+                                    return result || 'That URL already exists!'
+                                }
+                            }                                
+                        })} 
                         type="url" 
                         className="url-text"
                         defaultValue={''}

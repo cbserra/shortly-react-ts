@@ -1,17 +1,17 @@
 @media (min-width: 1024px) {
     nav {
-        width: 90vw;
+        width: 80%;
         height: 40px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 25px auto 50px auto;
+        margin-block: 50px;
     }
 }
   
 @media (max-width: 1023px) {
     nav {
-        width: 90vw;
+        width: 90%;
         height: 40px;
         display: flex;
         align-items: center;

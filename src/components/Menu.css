@@ -41,18 +41,19 @@
 @media (max-width: 1023px) {
     #nav-menu {
         background-color: var(--dark-violet);
-        position: absolute;
+        position: fixed;
         display: none;
         align-items: center;
         justify-content: space-between;
         /* flex-grow: 1; */
         flex-direction: column;
-        width: 90vw;
+        width: 325px;
         top: 75px;
         border-radius: 10px;
         z-index: 1000;
         padding: 30px;
         transition: .5s; 
+        height: 335px;
     }
 
     #nav-menu.show {

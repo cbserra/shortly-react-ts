@@ -4,13 +4,15 @@ section.shorten-url-container {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     transform: translateY(-90px);
     margin-bottom: -90px;
 }
 
 section.shorten-form-elements {
-    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 25px 50px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 10px;
@@ -24,6 +26,24 @@ form.shorten-form {
     flex-wrap: wrap;
 }
 
+form.shorten-form input.url-text {
+    font-style: normal;
+    font-weight: 500;
+    mix-blend-mode: normal;
+    padding: 0 25px;
+}
+
+form.shorten-form input {
+    border: none;
+}
+
+form.shorten-form input.submit-btn {
+    background-color: var(--cyan);
+    font-style: normal;
+    font-weight: 700;
+    color: var(--pretty-darn-white)
+}
+
 form.shorten-form > input:placeholder-shown, form.shorten-form > input:required:invalid {
     border: 2px solid var(--error-red);
     color: var(--error-red);
@@ -35,7 +55,6 @@ form.shorten-form > input:required:valid::before {
 }
 
 section.shorten-resp-container {
-    width: 85%;
     margin: 24px 0;
 }
 
@@ -45,7 +64,6 @@ div.error-message {
     /* padding: 10px; */
     /* color: darkred; */
     /* font-size: 12px; */
-    width: 99%;
     /* min-height: 40px; */
     text-align: left;
 }
@@ -53,9 +71,6 @@ div.error-message {
 span.error-message {
     font-style: italic;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
-    letter-spacing: 0.109091px;
     color: var(--error-red);
     padding: 10px;
 }
@@ -68,46 +83,53 @@ span.error-message {
 @media (min-width: 1024px) {
 
     section.shorten-form-elements {
-        position: relative;
-        display: flex;
-        align-items: center;
         justify-content: space-around;
-        width: 85%;
         height: 168px;
         background: url('../images/bg-shorten-desktop.svg') var(--dark-violet);
         background-size: cover;
-
+        width: 80%;
     }
 
     form.shorten-form input.url-text {
         width: 70%;
-        height: 64px;
-        border-radius: 10px;
-        font-style: normal;
-        font-weight: 500;
         font-size: 20px;
         line-height: 36px;
-        /* identical to box height, or 180% */
         letter-spacing: 0.15px;
         mix-blend-mode: normal;
         padding: 0 25px;
     }
 
     form.shorten-form input {
-        border: none;
+        border-radius: 10px;
+        height: 64px;
     }
 
     form.shorten-form input.submit-btn {
-        background-color: var(--cyan);
-        border-radius: 10px;
         width: 25%;
-        height: 64px;
-        font-style: normal;
-        font-weight: 700;
         font-size: 20px;
         line-height: 30px;
-        /* identical to box height */
-        color: var(--pretty-darn-white)
+    }
+
+    section.shorten-resp-container {
+        width: 80%;
+    }
+
+    div.error-message {
+        /* border: 1px solid darkred; */
+        /* background: rgba(255, 0, 0, .1); */
+        /* padding: 10px; */
+        /* color: darkred; */
+        /* font-size: 12px; */
+        width: 99%;
+        /* min-height: 40px; */
+        text-align: left;
+        flex-grow: 1;
+    }
+    
+    span.error-message {
+        font-size: 16px;
+        line-height: 18px;
+        letter-spacing: 0.109091px;
     }
 }
 
@@ -119,11 +141,11 @@ span.error-message {
         align-items: center;
         justify-content: space-around;
         flex-direction: column;
-        width: 85%;
         min-height: 160px;
         background: url('../images/bg-shorten-mobile.svg') var(--dark-violet);
         background-size: cover;
         padding: 25px;
+        width: 90%;
     }
 
     form.shorten-form {
@@ -132,17 +154,13 @@ span.error-message {
 
     form.shorten-form input {
         height: 48px;
-        border: none;
         border-radius: 5px;
         width: 100%;
     }
 
     form.shorten-form input.url-text {
-        font-style: normal;
-        font-weight: 500;
         font-size: 16px;
         line-height: 36px;
-        /* identical to box height, or 180% */
         letter-spacing: 0.15px;
         mix-blend-mode: normal;
         padding: 0 25px;
@@ -152,15 +170,14 @@ span.error-message {
 
 
     form.shorten-form input.submit-btn {
-        background-color: var(--cyan);
-        font-style: normal;
-        font-weight: 700;
         font-size: 18px;
         line-height: 27px;
-        /* identical to box height */
-        color: var(--pretty-darn-white);
         margin-top: 10px;
         order: 3;
+    }
+
+    section.shorten-resp-container {
+        width: 90%;
     }
 
     div.error-message {
@@ -169,13 +186,10 @@ span.error-message {
     }
 
     span.error-message {
-        font-style: italic;
-        font-weight: 500;
         font-size: 12px;
         line-height: 18px;
         letter-spacing: 0.0818182px;
         text-align: left;
         margin-right: auto;
-        padding: 10px;
     }
 }

@@ -1,3 +1,30 @@
+section.get-started {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+figure.text {
+    width: 60%;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+figure.text h1 {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--very-dark-blue);
+    margin: 0;
+}
+
+figure.text p {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--grayish-violet);
+}
+
 figure.text button {
     background: var(--cyan);
     border-radius: 28px;
@@ -8,62 +35,58 @@ figure.text button {
     font-size: 20px;
     line-height: 30px;
     color: var(--pretty-darn-white);
-    /* identical to box height */
+}
+
+figure.image {
+    /* overflow: hidden; */
+}
+
+figure.image img {
+    /* overflow: hidden; */
 }
 
 @media (min-width: 1024px) {
     section.get-started {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        position: relative;
-        left: 158px;
+        width: 80%;
     }
 
     figure.text {
-        width: 564px;
+        width: 60%;
         text-align: left;
-    }
-
-    figure.text h1 {
-        font-style: normal;
-        font-weight: 700;
-        font-size: 80px;
-        line-height: 90px;
-        /* or 112% */
-        letter-spacing: -2px;
-        color: var(--very-dark-blue);
+        padding: 0;
         margin: 0;
     }
 
+    figure.text h1 {
+        font-size: 80px;
+        line-height: 90px;
+        letter-spacing: -2px;
+    }
+
     figure.text p {
-        font-style: normal;
-        font-weight: 500;
         font-size: 22px;
         line-height: 36px;
-        /* or 164% */
         letter-spacing: 0.15px;
-        color: var(--grayish-violet);
         width: 90%;
         margin-top: 0;
     }
 
     figure.image {
-        width: 733px;
+        width: 40%;
+        /* margin-right: auto; */
+        /* overflow: visible; */
+        /* z-index: 100; */
         margin-left: auto;
+        /* overflow: hidden; */
+        /* margin-right: -5%; */
     }
 
 }
 
 @media (max-width: 1023px) {
     section.get-started {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         flex-direction: column-reverse;
         width: 100%;
-        position: relative;
     }
 
     section.get-started figure {
@@ -71,39 +94,34 @@ figure.text button {
     }
 
     figure.image {
-        width: 325px;
-        margin: auto 50px;
+        width: 90%;
+        margin-right: auto;
+        /* overflow: hidden; */
     }
 
     figure.image img {
         /* width: 327px; */
-        height: 270px;
+        height: 300px;
+        
     }
 
     figure.text {
-        width: 325px;
+        width: 90%;
         text-align: center;
     }
 
     figure.text h1 {
-        font-style: normal;
-        font-weight: 700;
         font-size: 42px;
         line-height: 48px;
         text-align: center;
         letter-spacing: -1.05px;
-        margin: 0;
     }
 
     figure.text p {
-        font-style: normal;
-        font-weight: 500;
         font-size: 18px;
         line-height: 30px;
         text-align: center;
         letter-spacing: 0.122727px;
-        /* width: 90%; */
-        color: var(--grayish-violet);
     }
 
 }
