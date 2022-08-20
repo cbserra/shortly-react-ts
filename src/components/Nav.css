@@ -1,7 +1,17 @@
+nav {
+    position: relative;
+    min-width: 90%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px 25px auto 25px;
+}
+
 @media (min-width: 1024px) {
     nav {
-        width: 80%;
-        height: 40px;
+        min-width: 80%;
+        min-height: 40px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -11,12 +21,7 @@
   
 @media (max-width: 1023px) {
     nav {
-        width: 90%;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 40px 25px auto 25px;
+        
         /* margin: 25px auto 50px auto; */
     }
 }

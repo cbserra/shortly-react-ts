@@ -5,7 +5,7 @@ const BoostLinks = () => {
     return (
         <section className="boost-container">
             <h1>Boost your links today</h1>
-            <button>Get Started</button>
+            <button className='round-blue-btn'>Get Started</button>
         </section>
     )
 }

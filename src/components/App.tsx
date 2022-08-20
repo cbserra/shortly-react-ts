@@ -32,6 +32,13 @@ function App() {
           window.removeEventListener("scroll", listenToScroll); 
   })
 
+  //   useEffect(() => {
+  //     window.onscroll = () => {
+  //         if (toggleMenuDisplay) {
+  //             setToggleMenuDisplay(false)
+  //         }
+  //     }
+  // })
 
   const toggleMobileMenu = () => {
       setToggleMenuDisplay((prevValue) => !prevValue) 
@@ -41,21 +48,28 @@ function App() {
   return (
     <div className="App">
       <header className="app-header">
-        <Nav 
-          isMobile={isMobile} 
-          isDesktop={isDesktop}
-          toggleMenu={toggleMenuDisplay} 
-          toggleMenuFun={setToggleMenuDisplay}
-          toggleMobileMenuFun={toggleMobileMenu} />
-        <GetStarted />
+        <div className="container">
+          <Nav 
+            isMobile={isMobile} 
+            isDesktop={isDesktop}
+            toggleMenu={toggleMenuDisplay} 
+            toggleMenuFun={setToggleMenuDisplay}
+            toggleMobileMenuFun={toggleMobileMenu} />
+          <GetStarted />
+        </div>
       </header>
       <main className="app-main">
+      <div className="container">
         <ShortenSection />
         <Statistics />
+        </div>
       </main>
+      <BoostLinks />
       <footer className="app-footer">
-        <BoostLinks />
-        <Footer />
+        
+        <div className="container">
+          <Footer />
+        </div>
       </footer>
     </div>
   );

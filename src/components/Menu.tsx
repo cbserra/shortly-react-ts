@@ -8,7 +8,9 @@ const Menu = (props : {toggleMenu?: boolean | undefined}) => {
             <li id="pricing-link">Pricing</li>
             <li id="resources-link">Resources</li>
             <li id="login-link" className="push-right">Login</li>
-            <li id="sign-up-link" className="sign-up">Sign Up</li>
+            <li id="sign-up-link" className="sign-up">
+                <button className="round-blue-btn">Sign Up</button>
+            </li>
         </ul>
     )
 }

@@ -1,6 +1,6 @@
 import { RefObject, useEffect, useRef, useState } from 'react'
 import ShortenResultCard from './ShortenResultCard'
-import { useForm } from "react-hook-form";
+import { useForm, useFormState } from "react-hook-form";
 import './ShortenSection.css'
 
 export interface ShortenSuccessResponse {
@@ -30,9 +30,10 @@ type FormInputs = {
 }
 
 const ShortenSection = () => {
-    const [shortenResponses, setShortenResponses] = useState<ShortenSuccessResponse[]>()
+    const [
+        shortenResponses, setShortenResponses] = useState<ShortenSuccessResponse[]>()
     const [shortenResultCards, setShortenResultCards] = useState<JSX.Element[]>([])
-    const { register, handleSubmit, setError, formState: { errors } } = useForm({
+    const { register, handleSubmit, setError, formState: { errors, isSubmitSuccessful} } = useForm({
             mode: "onSubmit",
             reValidateMode: "onChange",
             defaultValues: {
@@ -176,7 +177,19 @@ const ShortenSection = () => {
             </div>
             { shortenResultCards && (
                 <div className='shorten-resp-container'>
-                    {shortenResultCards}
+                    {shortenResponses && shortenResponses !== undefined && (
+                        // let cards: JSX.Element[] = json
+                        shortenResponses
+                        .map(res => res.result)
+                        .map((result, index) => 
+                            <ShortenResultCard 
+                                key={result.code} 
+                                shortUrl={result.short_link} 
+                                targetUrl={result.original_link}
+                                refProp={isSubmitSuccessful && index === shortenResponses.length - 1 ? scrollToRef : null}
+                            />
+                        )
+                    )}
                 </div>
             )}
         </div>

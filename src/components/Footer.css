@@ -45,6 +45,18 @@
     width: 100%;
 }
 
+.icon-container svg {
+    margin: 20px;
+}
+
+.icon-container a {
+    color: var(--pretty-darn-white);
+}
+
+.icon-container a:hover {
+    color: var(--cyan);
+}
+
 
 @media (min-width: 1024px) {
     .footer-container {
@@ -71,7 +83,7 @@
         text-align: left;
     }
     
-    .icon-container i {
+    .icon-container svg {
         margin: 10px;
     }
 
@@ -102,8 +114,6 @@
         text-align: center;
     }
 
-    .icon-container i {
-        margin: 20px;
-    }
+
 
 }

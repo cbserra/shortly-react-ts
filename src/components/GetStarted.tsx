@@ -11,7 +11,7 @@ const GetStarted = () => {
                 <p>Build your brand’s recognition and get detailed insights 
                 on how your links are performing.</p>
 
-                <button>Get Started</button>
+                <button className='round-blue-btn'>Get Started</button>
             </figure>
             <figure className="image">
                 <img src={illustrationWorking} alt="illustration working" />
