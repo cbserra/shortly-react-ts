@@ -1,45 +1,38 @@
-import { RefObject, useEffect, useRef, useState } from 'react'
+import { BaseSyntheticEvent, RefObject, useEffect, useRef, useState } from 'react'
 import ShortenResultCard from './ShortenResultCard'
-import { useForm, useFormState } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import './ShortenSection.css'
+import { SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS, ShortenErrorResponse, ShortenResult, ShortenSuccessResponse } from '../types/ShortenTypes';
+import useAxios from 'axios-hooks';
+import { useLocalStorageCachedAxios } from '../hooks/useLocalStorageCachedAxios';
 
-export interface ShortenSuccessResponse {
-    "ok": boolean,
-    "result": ShortenResult
+type FormValues = {
+    url: string
 }
 
-export interface ShortenErrorResponse {
-    "ok": boolean,
-    "error_code": number,
-    "error": string
-}
+// const useAxios = makeUseAxios({
+//   axios: axios.create({})
+// })
 
-export interface ShortenResult  {
-    "code": "string",
-    "short_link": "string",
-    "full_short_link": "string",
-    "short_link2": "string",
-    "full_short_link2": "string",
-    "share_link": "string",
-    "full_share_link": "string",
-    "original_link": "string"
-}
-
-type FormInputs = {
-    urlText: string
-}
-
-const ShortenSection = () => {
-    const [
-        shortenResponses, setShortenResponses] = useState<ShortenSuccessResponse[]>()
+const ShortenSection = (props: {
+    isMobile: boolean,
+    isDesktop: boolean
+}) => {
+    const [shortenResponses, setShortenResponses] = useState<ShortenResult[]>([])
     const [shortenResultCards, setShortenResultCards] = useState<JSX.Element[]>([])
-    const { register, handleSubmit, setError, formState: { errors, isSubmitSuccessful} } = useForm({
-            mode: "onSubmit",
-            reValidateMode: "onChange",
-            defaultValues: {
-                urlText: ""
-            }
-    });
+
+    const [{ data, loading, error }, refetch] = useLocalStorageCachedAxios<ShortenSuccessResponse, any, ShortenErrorResponse>(SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS)
+    //   useAxios<ShortenSuccessResponse, any, ShortenErrorResponse>(SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS)
+
+    const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors: formErrors, isValid, isSubmitted, isSubmitSuccessful },
+  } = useForm<FormValues>({
+    reValidateMode: 'onSubmit',
+    mode: 'onSubmit',
+  })
 
     // Scroll to newly-added ShortenResultCard Component
     const scrollToRef : RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
@@ -65,53 +58,63 @@ const ShortenSection = () => {
         window.localStorage.setItem('shortenResponses', JSON.stringify(shortenResponses));
     }, [shortenResponses]);
 
-    const onSubmitHandler = (form: FormInputs, event: any) => {
-        console.info(form)
+    // useEffect(() => {
 
-        try {
-            fetch(`https://api.shrtco.de/v2/shorten?url=${form.urlText}`, 
-            {
-                method: "GET",
-            })
-            .then(response => response.json())
-            .then(data  => {
-                console.log(data)
-                if (data.ok) {
-                    const success: ShortenSuccessResponse = data
+    //     if (shortenResponses && shortenResponses.length > 0) {
+    //         setShortenResponses((prevResps: any) => [...prevResps, data?.result])
+    //     } else if (data?.result) {
+    //         setShortenResponses([data?.result])
+    //     }
 
-                    if (shortenResponses?.some(res => res.result.code === success.result.code)) {
-                        console.debug("already have a response with matching code: " + success.result.code)
-                        return
-                    }
-                    console.debug(JSON.stringify(success))
-                    if (shortenResponses && shortenResponses.length > 0) {
-                        setShortenResponses((prevResps: any) => [...prevResps, success])
-                    } else {
-                        setShortenResponses([data])
-                    }
-    
-                    event.target.reset()
-                }
+    //     // setShortenResponses(JSON.parse(localStorage));
+    // }, [data])
 
-                if (!data.ok) {
-                    const error: ShortenErrorResponse = data
-                    setError('urlText', {type: 'server', message: `Error from API: [Error Code: ${error.error_code}], [Error Message: ${error.error}]`}, { shouldFocus: true})
-                    event.target.focus()
+    // useEffect(() => {
+    //     console.log(`🚀 ~ useEffect ~ data:`, data)
+    // }, [data])
+
+    const onSubmit: SubmitHandler<FormValues> = async (form: FormValues, evt?: BaseSyntheticEvent<object, any, any> | undefined) => {
+        evt?.preventDefault()
+        console.debug(`🚀 ~ constonSubmit:SubmitHandler<FormValues>= ~ form:`, form)
+
+        // const reqParams: ShortenRequestParams = {
+        //     ...form
+        // }
+        refetch({ 
+            // ...SHORTEN_REQ_CONF,
+            params: form //{ url: form['url'] } //reqParams 
+        })
+        .then((response) => {
+            console.debug(`🚀 ~ .then ~ response:`, response)
+            
+            if (response.data.ok && response.data.result !== undefined) {
+                const success = response.data.result
+                console.debug(`🚀 ~ .then ~ success:`, success)
+
+                if (shortenResponses?.some(res => res.code === success.code)) {
+                    console.debug("already have a response with matching code: " + success.code)
                     return
                 }
-                
-            })
-            .catch(error => {
-                console.error(error)
-                setError('urlText', {type: 'server', message: JSON.stringify(error)}, {shouldFocus: true})
-                event.target.focus()
-            })
-        } catch(error: any) {
-            console.error(error)
-            setError('urlText', {type: 'server', message: JSON.stringify(error)}, {shouldFocus: true})
-            event.target.focus()
-        }
+                // console.debug(JSON.stringify(success))
+                if (shortenResponses && shortenResponses.length > 0) {
+                    setShortenResponses((prevResps: any) => [...prevResps, success])
+                } else {
+                    setShortenResponses([success])
+                }
+            } else if (error?.isAxiosError && error.message !== undefined) {
+                console.log(`🚀 ~ .then ~ error:`, error)
 
+                console.error(`❗️ ~ .then ~ error.code:`, error.code)
+                console.error(`❗️ ~ .then ~ error.cause:`, error.cause)
+                setError("url", {message: `Axios Error detected during refetch: ${JSON.stringify(error)}`})
+            }
+
+            evt?.target.reset()
+        })
+        .catch((err) => {
+            console.error(`❗️ ~ err:`, err)
+            setError("url", {message: `Error caught during refetch: ${JSON.stringify(err.message)}`})
+        })
     }
 
     useEffect(() => {
@@ -120,13 +123,13 @@ const ShortenSection = () => {
                 let json: any[] = shortenResponses
 
                 let cards: JSX.Element[] = json
-                                            .map(res => res.result)
+                                            // .map(res => res.result)
                                             .map((result, index) => <ShortenResultCard 
                                                 key={result.code} 
                                                 shortUrl={result.short_link} 
                                                 targetUrl={result.original_link}
                                                 refProp={index === json.length - 1 ? scrollToRef : null}/>)                    
-                console.log(cards)
+                console.log(`🚀 ~ buildShortenResponseCards ~ cards:`, cards)
                 setShortenResultCards(cards)
                 executeScroll()
             }
@@ -138,41 +141,43 @@ const ShortenSection = () => {
     return (
         <div className="shorten-url-container">
             <div className="shorten-form-elements">
-                <form className="shorten-form" onSubmit={handleSubmit(onSubmitHandler)} noValidate>
-                    <input 
-                        {...register("urlText", {
-                            required: "Please add a link",
-                            pattern: {
-                                value: /^http(s?):\/\/.*/,
-                                message: "URL must begin with 'http://' or 'https://'!",
-                            },
-                            validate: {
-                                urlExists: (value: string) => {
-                                    console.log(`value: ${value}, shortenResponses: ${JSON.stringify(shortenResponses)} `)
-                                    let result = true
-                                    if (shortenResponses && shortenResponses?.length > 0) {
-                                        result = !shortenResponses.some(res => res.result.original_link === value)
-                                    }
+                <form className="shorten-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+                    <div className="input-container">
+                        <input 
+                            {...register("url", {
+                                required: "Please add a link",
+                                pattern: {
+                                    value: /^http(s?):\/\/.*/,
+                                    message: "URL must begin with 'http://' or 'https://'!",
+                                },
+                                validate: {
+                                    urlExists: (value: string) => {
+                                        console.log(`value: ${value}, shortenResponses: ${JSON.stringify(shortenResponses)} `)
+                                        let result = true
+                                        if (shortenResponses && shortenResponses?.length > 0) {
+                                            result = !shortenResponses.some(res => res.original_link === value)
+                                        }
 
-                                    return result || 'That URL already exists!'
-                                }
-                            }                                
-                        })} 
-                        type="url" 
-                        className="url-text"
-                        defaultValue={''}
-                        placeholder="Shorten a link here..." 
-                        required 
-                        />
-                    <input type="submit" className="submit-btn" value="Shorten It!" />
-                    <div className="break"></div>
-                    <div className="error-message">
-                        { errors.urlText && (
+                                        return result || 'That URL already exists!'
+                                    }
+                                }                                
+                            })} 
+                            type="url" 
+                            className="url-text"
+                            // defaultValue={''}
+                            placeholder="Shorten a link here..." 
+                            required 
+                            />
+                        <input type="submit" className="submit-btn" value="Shorten It!" />
+                    </div>
+                    {/* <div className="break"></div> */}
+                    {<div className="error-message">
+                        { formErrors.url && (
                             <span className='error-message'>
-                                {errors.urlText.message}
+                                {formErrors.url.message}
                             </span>
                         )}
-                    </div>
+                    </div>}
                 </form>
             </div>
             { shortenResultCards && (
@@ -180,12 +185,12 @@ const ShortenSection = () => {
                     {shortenResponses && shortenResponses !== undefined && (
                         // let cards: JSX.Element[] = json
                         shortenResponses
-                        .map(res => res.result)
+                        // .map(res => res.result)
                         .map((result, index) => 
                             <ShortenResultCard 
-                                key={result.code} 
-                                shortUrl={result.short_link} 
-                                targetUrl={result.original_link}
+                                key={result?.code || '1'} 
+                                shortUrl={result?.short_link || ''} 
+                                targetUrl={result?.original_link || ''}
                                 refProp={isSubmitSuccessful && index === shortenResponses.length - 1 ? scrollToRef : null}
                             />
                         )

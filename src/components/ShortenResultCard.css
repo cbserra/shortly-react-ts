@@ -6,6 +6,21 @@ div.shorten-result-card {
     align-items: center;
     justify-content: flex-start;
     margin: 16px 0;
+    flex-direction: column;
+}
+
+span.target-url {
+    width: 90%;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 36px;
+    overflow-wrap: break-word;
+    letter-spacing: 0.12px;
+    color: var(--very-dark-blue);
+    border-bottom: .5px solid var(--dark-gray-25-alpha);
+    text-align: left;
+    padding-block: 5px;
 }
 
 button.copy-btn {
@@ -28,6 +43,7 @@ button.copy-btn.click {
 
     div.shorten-result-card {
         height: 72px;
+        flex-direction: row;
     }
 
     span.target-url {
@@ -40,6 +56,7 @@ button.copy-btn.click {
         margin: 18px 32px;
         flex-grow: 1;
         text-align: left;
+        overflow-wrap: unset;
     }
     
     span.short-url {
@@ -67,9 +84,9 @@ button.copy-btn.click {
 
 @media (max-width: 1023px) {
 
-    div.shorten-result-card {
+    /* div.shorten-result-card {
         flex-direction: column;
-    }
+    } */
 
     span.target-url {
         width: 90%;

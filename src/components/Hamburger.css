@@ -1,14 +1,26 @@
+div.mobile-icon-wrapper > button {
+    display: inline-block;
+    /* color: var(--dark-gray); */
+    font-size: 27px;
+    border: none;
+    background-color: transparent;
+}
+
+div.mobile-icon-wrapper > button > svg {
+    fill: #9E9AA8;
+}
+
 @media (min-width: 1024px) {
-    div.mobile-icon-wrapper i {
+    div.mobile-icon-wrapper > button {
         display: none;
     }
 }
 
 @media (max-width: 1023px) {
-    div.mobile-icon-wrapper i {
+    /* div.mobile-icon-wrapper i {
         display: inline-block;
         color: var(--dark-gray);
         font-size: 27px;
-    }
+    } */
 }
 

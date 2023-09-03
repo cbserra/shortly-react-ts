@@ -15,36 +15,38 @@ const Footer = () => {
                     {/* <img src={logo} alt="shortly logo" /> */}
                 </div>
                 
-                <div className='list-container'>
-                    <h1>Features</h1>
-                    <ul>
-                        {['Link Shortening', 'Branded Links', 'Analytics'].map(item => <li key={item}><button className='button-link'>{item}</button></li>)}
-                        {/* <li>Link Shortening</li>
-                        <li>Branded Links</li>
-                        <li>Analytics</li> */}
-                    </ul>
-                </div>
+                <div className='site-map'>
+                    <div className='list-container'>
+                        <h1>Features</h1>
+                        <ul>
+                            {['Link Shortening', 'Branded Links', 'Analytics'].map(item => <li key={item}><button className='button-link'>{item}</button></li>)}
+                            {/* <li>Link Shortening</li>
+                            <li>Branded Links</li>
+                            <li>Analytics</li> */}
+                        </ul>
+                    </div>
 
-                <div className='list-container'>
-                    <h1>Resource</h1>
-                    <ul>
-                        {['Blog', 'Developers', 'Support'].map(item => <li key={item}><button className='button-link'>{item}</button></li>)}
-                        {/* <li>Blog</li>
-                        <li>Developers</li>
-                        <li>Support</li> */}
-                    </ul>
-                </div>
+                    <div className='list-container'>
+                        <h1>Resource</h1>
+                        <ul>
+                            {['Blog', 'Developers', 'Support'].map(item => <li key={item}><button className='button-link'>{item}</button></li>)}
+                            {/* <li>Blog</li>
+                            <li>Developers</li>
+                            <li>Support</li> */}
+                        </ul>
+                    </div>
 
-                <div className='list-container'>
-                    <h1>Company</h1>
-                    <ul>
-                        {['About', 'Careers', 'Press', 'Contact'].map(item => <li key={item}><button className='button-link'>{item}</button></li>)}
-                        {/* <li>About</li>
-                        <li>Our Team</li>
-                        <li>Careers</li>
-                        <li>Contact</li> */}
-                    </ul>  
-                </div> 
+                    <div className='list-container'>
+                        <h1>Company</h1>
+                        <ul>
+                            {['About', 'Careers', 'Press', 'Contact'].map(item => <li key={item}><button className='button-link'>{item}</button></li>)}
+                            {/* <li>About</li>
+                            <li>Our Team</li>
+                            <li>Careers</li>
+                            <li>Contact</li> */}
+                        </ul>  
+                    </div> 
+                </div>
 
                 <div className='icon-container'>
                     <a href='https://www.facebook.com/'><FacebookIcon /></a>

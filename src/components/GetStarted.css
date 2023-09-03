@@ -1,24 +1,38 @@
 section.get-started {
     display: flex;
+    flex-direction: column-reverse;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+section.get-started figure {
+    margin-top: 50px;
 }
 
 figure.text {
-    width: 60%;
-    text-align: left;
+    width: 90%;
+    /* width: 60%; */
+    text-align: center;
     padding: 0;
     margin: 0;
 }
 
 figure.text h1 {
+    font-size: 42px;
+    line-height: 48px;
+    /* text-align: center; */
+    letter-spacing: -1.05px;
     font-style: normal;
     font-weight: 700;
     color: var(--very-dark-blue);
     margin: 0;
 }
 
-figure.text p {
+figure.text p {    font-size: 18px;
+    line-height: 30px;
+    /* text-align: center; */
+    letter-spacing: 0.122727px;
     font-style: normal;
     font-weight: 500;
     color: var(--grayish-violet);
@@ -37,20 +51,25 @@ figure.text button {
 }
 
 figure.image {
+    width: 90%;
+    margin-left: auto;
     /* overflow: hidden; */
 }
 
 figure.image img {
-    /* overflow: hidden; */
+    /* width: 327px; */
+    height: 300px;
+    
 }
 
 @media (min-width: 1024px) {
     section.get-started {
-        width: 80%;
+        /* width: 80%; */
+        flex-direction: row;
     }
 
     figure.text {
-        width: 60%;
+        width: max-content;
         text-align: left;
         padding: 0;
         margin: 0;
@@ -83,8 +102,9 @@ figure.image img {
 }
 
 @media (max-width: 1023px) {
+    /* 
     section.get-started {
-        flex-direction: column-reverse;
+        
         width: 100%;
     }
 
@@ -95,11 +115,11 @@ figure.image img {
     figure.image {
         width: 90%;
         margin-right: auto;
-        /* overflow: hidden; */
+        overflow: hidden;
     }
 
     figure.image img {
-        /* width: 327px; */
+        width: 327px;
         height: 300px;
         
     }
@@ -121,6 +141,6 @@ figure.image img {
         line-height: 30px;
         text-align: center;
         letter-spacing: 0.122727px;
-    }
-
+    } 
+    */
 }
