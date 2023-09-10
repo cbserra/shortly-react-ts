@@ -1,4 +1,5 @@
 .App {
+  background-color: var(--pretty-darn-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,26 +23,12 @@ div.container {
 
 div.top-container {
   background: #FFF;
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
-  margin-bottom: .5rem;
+  /* box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  margin-bottom: .5rem; */
 }
 
 div.mid-container {
   background-color: var(--light-gray);
-}
-
-header.app-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  /* width: 100%; */
-  width: 87.2vw;
-  background: var(--pretty-darn-white);
-  margin: 0;
-  padding-bottom: 125px;
-  max-width: 1110px;
-  /* overflow-x: hidden; */
 }
 
 main.app-main {
@@ -51,7 +38,7 @@ main.app-main {
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  max-width: 1110px;
+  /* max-width: 1110px; */
 }
 
 footer.app-footer {

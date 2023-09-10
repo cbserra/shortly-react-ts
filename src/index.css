@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 @import url('./reset.css');
+/* @import-normalize; */
+@import '~sanitize.css';
 
 * {
   box-sizing: border-box;
@@ -39,6 +41,17 @@ div#root {
   justify-content: center;
 }
 
+button {
+  background: var(--cyan);
+  color: var(--pretty-darn-white);
+}
+
+button:hover {
+  cursor: pointer;
+  background: var(--light-cyan);
+}
+
+
 button.round-blue-btn {
   background: var(--cyan);
   border-radius: 28px;
@@ -67,16 +80,16 @@ button.button-link:hover {
 :root {
   --cyan: hsl(180, 66%, 49%);
   --light-cyan: hsl(180, 57%, 75%);
-  --dark-violet: hsl(257, 27%, 26%);
+  --dark-violet: hsl(258, 27%, 26%);
   --red: hsl(0, 87%, 67%);
   --gray: hsl(0, 0%, 75%);
-  --dark-gray: hsla(257, 8%, 63%);
+  --dark-gray: hsl(257, 8%, 63%);
   --dark-gray-25-alpha: hsla(257, 8%, 63%, .25);
-  --grayish-violet: hsl(257, 7%, 63%);
-  --very-dark-blue: hsl(255, 11%, 22%);
+  --grayish-violet: hsl(258, 7%, 63%);
+  --very-dark-blue: hsl(257, 11%, 21%);
   --very-dark-violet: hsl(260, 8%, 14%);
-  --pretty-darn-white: rgb(255, 255, 255);
-  --light-gray: hsla(0, 0%, 95%, 1);
+  --pretty-darn-white: hsl(0, 0%, 100%);
+  --light-gray: hsl(0, 0%, 95%);
   --error-red:  hsl(0, 87%, 67%);
   --valid-green: hsl(120, 100%, 20%);
   --nearly-black: hsla(257, 8%, 14%, 1);

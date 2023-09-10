@@ -1,28 +1,20 @@
 import 'normalize.css'
 import './App.css';
-import Nav from './Nav'
 import GetStarted from './GetStarted';
-import ShortenSection from './ShortenSection';
+import ShortenSection from './form/ShortenSection';
 import Statistics from './Statistics';
 import { useMediaQuery } from 'react-responsive';
 import { useEffect, useState } from 'react';
 import BoostLinks from './BoostLinks';
-import Footer from './Footer';
-
-export enum DeviceType {
-  Mobile = "MOBILE",
-  Desktop = "DESKTOP"
-}
+import Footer from './footer/Footer';
+import { DeviceType, FormValues, ShortenResult } from '../types/ShortenTypes';
+import Header from './header/Header';
+import { FormProvider, useForm } from 'react-hook-form';
 
 function App() {
-  const toggleMobileMenu = () => {
-      setToggleMenuDisplay((prevValue) => !prevValue) 
-  }
 
   const handleWindowResize = (matches: any) => {
-    console.log(`🚀 ~ handleWindowResize ~ matches:`, matches)
-    // const previousDevice = 
-
+    console.log(`🚀 ~ handleWindowResize ~ matches:`, JSON.stringify(matches))
   }
 
   const isDesktop = useMediaQuery(
@@ -38,8 +30,10 @@ function App() {
   )
   // useMediaQuery({ query: '(max-width: 1023px)' })
   
+  const [isMobileState, setIsMobileState] = useState(isMobile)
+  const [isDesktopState, setIsDesktopState] = useState(isDesktop)
   const [toggleMenuDisplay, setToggleMenuDisplay] = useState(false)
-  const [previousDeviceType, setPreviousDeviceType] = useState<DeviceType>()
+  const [previousDeviceType, setPreviousDeviceType] = useState<DeviceType>(!isDesktop ? DeviceType.Desktop : DeviceType.Mobile)
   const [currentDeviceType, setCurrentDeviceType] = useState<DeviceType>(isDesktop ? DeviceType.Desktop : DeviceType.Mobile)
 
   const listenToScroll = () => {
@@ -47,9 +41,9 @@ function App() {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
 
     if (winScroll > heightToHideFrom) {  
-        console.debug(`🚀 ~ listendToScroll ~ winScroll:`, winScroll)
-        console.debug(`🚀 ~ listenToScroll ~ heightToHideFrom:`, heightToHideFrom)
-        console.debug(`🚀 ~ listenToScroll ~ toggleMenuDisplay:`, toggleMenuDisplay)
+        // console.debug(`🚀 ~ listendToScroll ~ winScroll:`, winScroll)
+        // console.debug(`🚀 ~ listenToScroll ~ heightToHideFrom:`, heightToHideFrom)
+        // console.debug(`🚀 ~ listenToScroll ~ toggleMenuDisplay:`, toggleMenuDisplay)
         
         if (toggleMenuDisplay) {
             setToggleMenuDisplay(false);
@@ -72,50 +66,68 @@ function App() {
   // })
 
   useEffect(() => {
-    setPreviousDeviceType(currentDeviceType)
-    setCurrentDeviceType(isDesktop ? DeviceType.Desktop : DeviceType.Mobile)
-  }, [isMobile, isDesktop, currentDeviceType])
+    console.log(`🚀 ~ App ~ isMobile:`, isMobile)
+
+    setIsMobileState(isMobile)
+  }, [isMobile])
+
+    useEffect(() => {
+    console.log(`🚀 ~ App ~ isDesktop:`, isDesktop)
+
+    setIsDesktopState(isDesktop)
+  }, [isDesktop])
+  
+    useEffect(() => {
+    console.log(`🚀 ~ useEffect ~ currentDeviceType:`, currentDeviceType)
+
+    setPreviousDeviceType(currentDeviceType === DeviceType.Desktop ? DeviceType.Mobile : DeviceType.Desktop)
+  }, [currentDeviceType])
 
   useEffect(() => {
     console.debug(`🚀 ~ App ~ previousDeviceType:`, previousDeviceType)
     console.debug(`🚀 ~ App ~ currentDeviceType:`, currentDeviceType)
   }, [currentDeviceType, previousDeviceType])
 
-  // useEffect(() => {
-  //     window.addEventListener('resize', handleWindowResize)
-
-  //     return () => {
-  //         window.removeEventListener("resize", handleWindowResize);
-  //     };
-  // })
+   const formMethods = useForm<FormValues>({
+        reValidateMode: 'onSubmit',
+        mode: 'onSubmit',
+    })
   
   return (
     <div className="App">
       <div className="container top-container">
-        <header className="app-header">
-          <Nav 
-            isMobile={isMobile} 
-            isDesktop={isDesktop}
-            toggleMenu={toggleMenuDisplay} 
-            toggleMenuFun={setToggleMenuDisplay}
-            toggleMobileMenuFun={toggleMobileMenu} />
-          <GetStarted />
-        </header>
+        <Header 
+          isMobile={isMobileState} 
+          setIsMobile={setIsMobileState}
+          isDesktop={isDesktopState}
+          setIsDesktop={setIsDesktopState}
+          toggleMenuDisplay={toggleMenuDisplay}
+          setToggleMenuDisplay={setToggleMenuDisplay}
+          previousDeviceType={previousDeviceType}
+          setPreviousDeviceType={setPreviousDeviceType}
+          currentDeviceType={currentDeviceType}
+          setCurrentDeviceType={setCurrentDeviceType}
+        />
+        <GetStarted />
       </div>
       <div className="container mid-container">
         <main className="app-main">
-          <ShortenSection 
-            isMobile={isMobile} 
-            isDesktop={isDesktop}
-          />
+          <FormProvider {...formMethods}>
+            <ShortenSection 
+              setCurrentDeviceType={setCurrentDeviceType}
+              currentDeviceType={currentDeviceType}
+              isMobile={isMobileState} 
+              setIsMobile={setIsMobileState}
+              isDesktop={isDesktopState}
+              setIsDesktop={setIsDesktopState}
+            />
+          </FormProvider>
           <Statistics />
         </main>
       </div>
-      <BoostLinks />
       <div className="container btm-container">
-        <footer className="app-footer">
-          <Footer />
-        </footer>
+        <BoostLinks />
+        <Footer />
       </div>
     </div>
   );

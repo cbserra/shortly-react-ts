@@ -2,11 +2,13 @@ import React, { RefObject } from "react"
 import './ShortenResultCard.css'
 
 const ShortenResultCard = (props : { 
-    key: string,
     targetUrl: string, 
     shortUrl: string, 
     refProp: RefObject<HTMLDivElement> | null
 }) => {
+    const targetUrl = props.targetUrl
+    const shortUrl = props.shortUrl
+    const refProp = props.refProp
 
     function copyUrl(event: any) {
         const buttonElem = event.target
@@ -25,10 +27,12 @@ const ShortenResultCard = (props : {
     }
 
     return (
-        <div className="shorten-result-card" ref={props.refProp}>
-            <span className="target-url">{props.targetUrl}</span>
-            <span className="short-url">{props.shortUrl}</span>
-            <button className="copy-btn" onClick={copyUrl}>Copy</button>
+        <div className="shorten-result-card" ref={refProp}>
+            <div className="target-url">{targetUrl}</div>
+            <div className="short-url">
+                <span>{shortUrl}</span>
+                <button className="copy-btn" onClick={copyUrl}>Copy</button>
+            </div>
         </div>
     )
 }

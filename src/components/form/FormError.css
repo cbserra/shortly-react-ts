@@ -1,0 +1,32 @@
+
+div.error-message {
+    /* order: 2; */
+    width: 100%;
+    text-align: left;
+}
+
+span.error-message {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--error-red);
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    letter-spacing: 0.0818182px;
+    text-align: left;
+    /* margin-right: auto; */
+}
+
+@media (min-width: 1024px) {
+
+    div.error-message {
+        height: 2.0rem;
+        /* text-align: left; */
+        /* flex-grow: 1; */
+    }
+    
+    span.error-message {
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+        letter-spacing: 0.109091px;
+    }
+}

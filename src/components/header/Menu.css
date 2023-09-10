@@ -1,28 +1,29 @@
-#nav-menu {
+ul#nav-menu {
     background-color: var(--dark-violet);
     position: absolute;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
     min-width: 100%;
-    top: 2.5rem;
+    top: 4rem;
     border-radius: 10px;
     padding: 4rem 2.4rem;
     transition: .5s; 
-    min-height: 335px;
+    /* min-height: 335px; */
     row-gap: 3rem;
+    z-index: 100;
 }
 
-#nav-menu.show {
+ul#nav-menu.show {
     display: flex;
 }
 
-#nav-menu,
-#nav-menu.hide {
+ul#nav-menu,
+ul#nav-menu.hide {
     display: none;
 }
 
-#nav-menu li {
+ul#nav-menu li {
     list-style-type: none;
     font-style: normal;
     font-weight: 700;
@@ -39,7 +40,7 @@
     border-bottom: .5px solid var(--dark-gray);
 } */
 
-#nav-menu.show li.hor-line {
+ul#nav-menu.mobile.show li.hor-line {
     line-height: .1rem;
     height: .1rem;
     background-color: var(--dark-gray);
@@ -48,12 +49,12 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-#nav-menu.show li.hor-line {
+ul#nav-menu.mobile.show li.hor-line {
     display: flex;
 }
 
-#nav-menu li.hor-line,
-#nav-menu.hide li.hor-line {
+ul#nav-menu.desktop li.hor-line,
+ul#nav-menu.desktop.hide li.hor-line {
     display: none;
 }
 
@@ -62,7 +63,7 @@
     border-top: .5px solid var(--dark-gray);
 } */
 
-#nav-menu li.sign-up > button.round-blue-btn {
+ul#nav-menu li.sign-up > button.round-blue-btn {
     /* background: var(--cyan);
     border-radius: 28px;
     color: var(--pretty-darn-white); */
@@ -77,7 +78,7 @@
 
 @media (min-width: 1024px) {
 
-    #nav-menu {
+    ul#nav-menu {
         background-color: transparent;
         position: initial;
         display: flex;
@@ -89,7 +90,7 @@
         min-width: auto;
     }
     
-    #nav-menu li {
+    ul#nav-menu li {
         list-style-type: none;
         font-style: normal;
         font-weight: 700;
@@ -100,12 +101,12 @@
         width: 100px;
     }
 
-    #nav-menu li:hover {
+    ul#nav-menu li:hover {
         cursor: pointer;
         color: var(--very-dark-blue);
     }
 
-    #nav-menu li.sign-up:hover {
+    ul#nav-menu li.sign-up:hover {
         color: var(--pretty-darn-white);
     }
 
@@ -117,7 +118,7 @@
         margin-left: auto;
     }
 
-    #nav-menu li.sign-up > button.round-blue-btn {
+    ul#nav-menu li.sign-up > button.round-blue-btn {
         width: max-content;
     }
 }
@@ -138,15 +139,15 @@
         min-height: 335px;
     }
 
-    #nav-menu.show {
+    ul#nav-menu.show {
         display: flex;
     }
 
-    #nav-menu.hide {
+    ul#nav-menu.hide {
         display: none;
     }
 
-    #nav-menu li {
+    ul#nav-menu li {
         list-style-type: none;
         font-style: normal;
         font-weight: 700;

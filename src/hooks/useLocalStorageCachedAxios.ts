@@ -1,4 +1,4 @@
-import { SHORTEN_API_URL, ShortenRequestConfig, SHORTEN_REQ_OPTS } from "../types/ShortenTypes"
+import { SHORTEN_API_URL, ShortenRequestConfig, SHORTEN_REQ_OPTS, ShortenResult, PartialShortenResult, ShortenSuccessResponse } from "../types/ShortenTypes"
 // Import dependencies
 import { AxiosRequestConfig } from 'axios'
 import { setupCache } from 'axios-cache-adapter'
@@ -27,14 +27,32 @@ const cache = setupCache({
 //   adapter: cache.adapter
 // })
 
-const SHORTEN_REQ_CACHE_CONF: ShortenRequestConfig = {
+const SHORTEN_REQ_CACHE_CONF: AxiosRequestConfig<ShortenRequestConfig> = {
   baseURL: SHORTEN_API_URL,
   adapter: cache.adapter,
-  method: 'get'
+  method: 'get',
+  // transformResponse: [function(data: ShortenSuccessResponse): ShortenSuccessResponse {
+  //   console.log(`🚀 ~ data:`, data)
+  //   let partialResult: PartialShortenResult = Object.assign({}, data.result)
+  //   // console.log(`🚀 ~ partialResult:`, partialResult)
+  //   // data = Object.assign({})
+  //   if (data.ok) {
+  //     data.result = {
+  //       code: partialResult.code,
+  //       short_link: partialResult.short_link,
+  //       original_link: partialResult.original_link
+  //     }
+  //   }
+
+  //   return data
+  // }]
 }
 
 export const useLocalStorageCachedAxios = <TResponse, TBody, TError>
-  (config?: string | AxiosRequestConfig<any> | undefined, options?: Options | undefined)
+  (
+    config?: string | AxiosRequestConfig<any> | undefined, 
+    options?: Options | undefined
+  )
   : UseAxiosResult<TResponse, TBody, TError> => {
   
     return useAxios<TResponse, TBody, TError>

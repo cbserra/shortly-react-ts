@@ -1,23 +1,23 @@
-
 .boost-container {
-    background: url('../images/bg-boost-desktop.svg') var(--dark-violet);
+    background: url('../images/bg-boost-mobile.svg') var(--dark-violet);
     background-size: cover;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 250px;
     flex-direction: column;
+    /* height: 300px; */
+    padding-block: 9rem;
+    /* padding-inline: auto; */
 }
 
 .boost-container h1 {
+    font-size: 28px;
+    letter-spacing: -0.7px;
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
     line-height: 48px;
     text-align: center;
-    letter-spacing: -1px;
-    
     color: var(--pretty-darn-white);
 }
 
@@ -33,16 +33,24 @@
     color: var(--pretty-darn-white);
 }
 
-@media (max-width: 1023px) {
+@media (min-width: 1024px) {
 
-    .boost-container {
-        background: url('../images/bg-boost-mobile.svg') var(--dark-violet);
-        height: 300px;
-    }
+.boost-container {
+    background: url('../images/bg-boost-desktop.svg') var(--dark-violet);
+    /* height: 250px; */
+    padding-block: 5.7rem;
+    /* background-size: cover;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column; */
+}
 
-    .boost-container h1 {
-        font-size: 28px;
-        letter-spacing: -0.7px;
-    }
+.boost-container h1 {
+    font-size: 40px;
+    letter-spacing: -1px;
+}
+
 
 }

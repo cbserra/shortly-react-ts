@@ -1,4 +1,6 @@
-import { Axios, AxiosAdapter } from "axios"
+import { Axios, AxiosAdapter, AxiosError, AxiosPromise, AxiosRequestConfig, AxiosResponseTransformer } from "axios"
+import { RefetchOptions, UseAxiosResult } from "axios-hooks"
+import { UseFormRegister } from "react-hook-form"
 
 export const SHORTEN_API_URL = 'https://api.shrtco.de/v2/shorten'
 
@@ -12,6 +14,11 @@ export const SHORTEN_REQ_OPTS = {
   useCache: true
 }
 
+export enum DeviceType {
+  Mobile = "MOBILE",
+  Desktop = "DESKTOP"
+}
+
 // export interface ShortenResponse {
 //   ok: boolean
 //   resp_wrapper?: ShortenSuccessResponse | ShortenErrorResponse
@@ -19,15 +26,8 @@ export const SHORTEN_REQ_OPTS = {
 
 export interface ShortenSuccessResponse {
     ok: boolean,
-    result?: ShortenResult
+    result?: PartialShortenResult
 }
-
-export interface ShortenErrorResponse {
-    ok: boolean,
-    error_code?: number,
-    error?: string
-}
-
 export interface ShortenResult  {
     code: string,
     short_link: string,
@@ -39,11 +39,18 @@ export interface ShortenResult  {
     original_link: string
 }
 
+export interface PartialShortenResult  {
+    code?: string,
+    short_link?: string,
+    original_link?: string
+}
+
 export type ShortenRequestConfig = {
-    adapter?: AxiosAdapter,
-    baseURL: string,
-    params?: ShortenRequestParams,
+    adapter?: AxiosAdapter
+    baseURL: string
+    params?: ShortenRequestParams
     method: 'get'
+    transformResponse?: AxiosResponseTransformer | AxiosResponseTransformer[]; 
 }
 
 export type ShortenRequestParams = {
@@ -53,4 +60,28 @@ export type ShortenRequestParams = {
 export type ShortenRequestOptions = {
   manual: boolean,
   useCache: boolean
+}
+
+// Shorten Error Types
+export interface ShortenErrorResponse {
+    ok: boolean,
+    error_code?: number,
+    error?: string
+}
+
+export type FormValues = {
+    url: string
+}
+
+export interface ShortenForm {
+    isMobile: boolean
+    isDesktop: boolean
+    register: UseFormRegister<FormValues>
+    fetchFun: (config?: AxiosRequestConfig<any> | undefined, options?: RefetchOptions | undefined) => AxiosPromise<ShortenSuccessResponse>
+    shortenResultCards: JSX.Element[]
+    setShortenResultCardsFun: React.Dispatch<React.SetStateAction<JSX.Element[]>>
+    shortenResponses: ShortenResult[]
+    setShortenResponsesFun: React.Dispatch<React.SetStateAction<ShortenResult[]>>
+    error: AxiosError<ShortenErrorResponse, any> | null
+    useAxiosResult: UseAxiosResult<any, any, any>
 }

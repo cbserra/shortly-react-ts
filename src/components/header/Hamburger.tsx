@@ -1,7 +1,7 @@
 import './Hamburger.css'
-import {ReactComponent as HamburgerIcon} from '../images/icon-hamburger.svg'
+import {ReactComponent as HamburgerIcon} from '../../images/icon-hamburger.svg'
 
-const Hamburger = (props: { onClickFun: any }) => (
+const Hamburger = (props: { onClickFun: () => void }) => (
     <div className="mobile-icon-wrapper">
         <button onClick={props.onClickFun}>
             <HamburgerIcon />
