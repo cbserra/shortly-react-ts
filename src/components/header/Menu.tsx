@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import './Menu.css'
+import { DeviceType } from '../../types/ShortenTypes'
 
 type Props = {
     toggleMenu?: boolean | undefined,
-    deviceType: string
+    setToggleMenu?: (value: React.SetStateAction<boolean>) => void
+    deviceType: DeviceType
+    setDeviceType: (value: React.SetStateAction<DeviceType>) => void
 }
 
 const Menu = (props: Props) => {
@@ -11,12 +14,12 @@ const Menu = (props: Props) => {
         return toggleMenu === undefined ? '' : (toggleMenu ? 'show' : 'hide')
     }
 
-    const generateMenuClassNames = (menuClass: string, deviceType: string): string => {
-        return [menuClass].concat(deviceType).join(' ')
+    const generateMenuClassNames = (menuClass: string, deviceType: DeviceType): string => {
+        return [menuClass].concat(deviceType.toLowerCase()).join(' ')
     }
 
-    const [toggleMenu, setToggleMenu] = useState(props.toggleMenu)
-    const [deviceType, setDeviceType] = useState(props.deviceType)
+    // const {toggleMenu, setToggleMenu} = props
+    const {deviceType, setDeviceType} = props
 
     const [menuClass,  setMenuClass]  =  useState(getMenuClass(props.toggleMenu))
     const [classNames, setClassNames] =  useState(generateMenuClassNames(menuClass, deviceType))
@@ -25,13 +28,12 @@ const Menu = (props: Props) => {
     // const classNames = props.deviceType
 
     useEffect(() => {
-        setToggleMenu(props.toggleMenu)
         setMenuClass(getMenuClass(props.toggleMenu))
         setClassNames(generateMenuClassNames(menuClass, deviceType))
         
         console.log(`🚀 ~ useEffect ~ props.toggleMenu:`, props.toggleMenu)
         // console.log(`🚀 ~ useEffect ~ toggleMenu:`, toggleMenu)
-    }, [deviceType, menuClass, props.toggleMenu, toggleMenu])
+    }, [deviceType, menuClass, props.toggleMenu])
     
 
     useEffect(() => {
@@ -39,8 +41,8 @@ const Menu = (props: Props) => {
         setClassNames(generateMenuClassNames(menuClass, props.deviceType))
         
         console.log(`🚀 ~ useEffect ~ props.deviceType:`, props.deviceType)
-        console.log(`🚀 ~ useEffect ~ deviceType:`, deviceType)
-    }, [deviceType, menuClass, props.deviceType])
+        // console.log(`🚀 ~ useEffect ~ deviceType:`, deviceType)
+    }, [menuClass, props.deviceType, setDeviceType])
 
     useEffect(() => {
         console.log(`🚀 ~ Menu ~ classNames:`, classNames)    

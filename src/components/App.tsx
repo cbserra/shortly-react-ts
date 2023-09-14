@@ -7,28 +7,58 @@ import { useMediaQuery } from 'react-responsive';
 import { useEffect, useState } from 'react';
 import BoostLinks from './BoostLinks';
 import Footer from './footer/Footer';
-import { DeviceType, FormValues, ShortenResult } from '../types/ShortenTypes';
+import { DeviceType, FormValues } from '../types/ShortenTypes';
 import Header from './header/Header';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function App() {
 
-  const handleWindowResize = (matches: any) => {
-    console.log(`🚀 ~ handleWindowResize ~ matches:`, JSON.stringify(matches))
-  }
+  // const handleWindowResize = (matches: any) => {
+  //   console.log(`🚀 ~ handleWindowResize ~ matches:`, JSON.stringify(matches))
+  // }
 
-  const isDesktop = useMediaQuery(
-    { minWidth: 1024 },
-    undefined,
-    handleWindowResize
-  )
-  // useMediaQuery({query: '(min-width: 1024px)' })
-  const isMobile = useMediaQuery(
-    { maxWidth: 1023 },
-    undefined,
-    handleWindowResize
-  )
-  // useMediaQuery({ query: '(max-width: 1023px)' })
+  // const handleWindowResize = (matches: any): void => {
+  //   const mediaQuery = window.matchMedia('(min-width: 1024px)')
+  //   console.log(`🚀 ~ handleWindowResize ~ mediaQuery:`, mediaQuery)
+
+  //   if (mediaQuery.matches) {
+  //     if (isDesktop) {
+  //       console.log(`🚀 ~ handleWindowResize ~ mediaQuery.matches ~ isDesktop:`, isDesktop)
+  //       console.log(`🚀 ~ handleWindowResize ~ mediaQuery.matches ~ isMobile:`, isMobile)
+  //       console.log(`🚀 ~ handleWindowResize ~ mediaQuery.matches ~ isDesktopState:`, isDesktopState)
+  //       console.log(`🚀 ~ handleWindowResize ~ mediaQuery.matches ~ isMobileState:`, isMobileState)
+  //       console.log(`🚀 ~ handleWindowResize ~ mediaQuery:`, mediaQuery)
+  //       console.log(`🚀 ~ handleWindowResize ~ now matches Desktop:`, matches)
+  //       // setIsDesktopState((prevVal) => !prevVal)
+  //       // setIsMobileState((prevVal) => !prevVal)
+  //     }
+  //   } else {//if (!mediaQuery.matches) {
+  //     if (isMobile) {
+  //       console.log(`🚀 ~ handleWindowResize ~ !mediaQuery.matches ~ isDesktop:`, isDesktop)
+  //       console.log(`🚀 ~ handleWindowResize ~ !mediaQuery.matches ~ isMobile:`, isMobile)
+  //       console.log(`🚀 ~ handleWindowResize ~ !mediaQuery.matches ~ isDesktopState:`, isDesktopState)
+  //       console.log(`🚀 ~ handleWindowResize ~ !mediaQuery.matches ~ isMobileState:`, isMobileState)
+  //       console.log(`🚀 ~ handleWindowResize ~ mediaQuery:`, mediaQuery)
+  //       console.log(`🚀 ~ handleWindowResize ~ now matches Mobile:`, matches)
+  //       // setIsMobileState((prevVal) => !prevVal)
+  //       // setIsDesktopState((prevVal) => !prevVal)
+  //     }
+  //   }
+
+  // }
+
+  // const isDesktop = useMediaQuery(
+  //   { minWidth: 1024 },
+  //   undefined,
+  //   handleWindowResize
+  // )
+  const isDesktop = useMediaQuery({query: '(min-width: 1024px)' })
+  // const isMobile = useMediaQuery(
+  //   { maxWidth: 1023 },
+  //   undefined,
+  //   handleWindowResize
+  // )
+  const isMobile = useMediaQuery({ query: '(max-width: 1023px)' })
   
   const [isMobileState, setIsMobileState] = useState(isMobile)
   const [isDesktopState, setIsDesktopState] = useState(isDesktop)
@@ -57,25 +87,33 @@ function App() {
           window.removeEventListener("scroll", listenToScroll); 
   })
 
-  //   useEffect(() => {
-  //     window.onscroll = () => {
-  //         if (toggleMenuDisplay) {
-  //             setToggleMenuDisplay(false)
-  //         }
-  //     }
-  // })
-
   useEffect(() => {
     console.log(`🚀 ~ App ~ isMobile:`, isMobile)
+    // console.log(`🚀 ~ App ~ isMobileState:`, isMobileState)
 
-    setIsMobileState(isMobile)
-  }, [isMobile])
+    // setIsMobileState(isMobile)
+  }, [isMobile]) //, isMobileState])
 
     useEffect(() => {
     console.log(`🚀 ~ App ~ isDesktop:`, isDesktop)
+    // console.log(`🚀 ~ App ~ isDesktopState:`, isDesktopState)
 
-    setIsDesktopState(isDesktop)
-  }, [isDesktop])
+    // setIsDesktopState(isDesktop)
+  }, [isDesktop]) //, isDesktopState])
+
+    useEffect(() => {
+    // console.log(`🚀 ~ App ~ isMobile:`, isMobile)
+    console.log(`🚀 ~ App ~ isMobileState:`, isMobileState)
+
+    // setIsMobileState(isMobile)
+  }, [isMobileState])
+
+    useEffect(() => {
+    // console.log(`🚀 ~ App ~ isDesktop:`, isDesktop)
+    console.log(`🚀 ~ App ~ isDesktopState:`, isDesktopState)
+
+    // setIsDesktopState(isDesktop)
+  }, [isDesktopState])
   
     useEffect(() => {
     console.log(`🚀 ~ useEffect ~ currentDeviceType:`, currentDeviceType)
@@ -85,13 +123,13 @@ function App() {
 
   useEffect(() => {
     console.debug(`🚀 ~ App ~ previousDeviceType:`, previousDeviceType)
-    console.debug(`🚀 ~ App ~ currentDeviceType:`, currentDeviceType)
-  }, [currentDeviceType, previousDeviceType])
+    // console.debug(`🚀 ~ App ~ currentDeviceType:`, currentDeviceType)
+  }, [previousDeviceType])
 
-   const formMethods = useForm<FormValues>({
-        reValidateMode: 'onSubmit',
-        mode: 'onSubmit',
-    })
+  const formMethods = useForm<FormValues>({
+      reValidateMode: 'onSubmit',
+      mode: 'onSubmit',
+  })
   
   return (
     <div className="App">

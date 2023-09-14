@@ -1,4 +1,4 @@
-import { Axios, AxiosAdapter, AxiosError, AxiosPromise, AxiosRequestConfig, AxiosResponseTransformer } from "axios"
+import { AxiosAdapter, AxiosError, AxiosPromise, AxiosRequestConfig, AxiosResponseTransformer } from "axios"
 import { RefetchOptions, UseAxiosResult } from "axios-hooks"
 import { UseFormRegister } from "react-hook-form"
 
@@ -26,7 +26,7 @@ export enum DeviceType {
 
 export interface ShortenSuccessResponse {
     ok: boolean,
-    result?: PartialShortenResult
+    result?: ShortenResult
 }
 export interface ShortenResult  {
     code: string,

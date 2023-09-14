@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  } from 'react'
 import './Header.css'
 import Nav from './Nav'
 import { DeviceType } from '../../types/ShortenTypes'
@@ -44,13 +44,13 @@ const Header = (props: Props) => {
   //         window.removeEventListener("scroll", listenToScroll); 
   // })
 
-    useEffect(() => {
-        console.log(`🚀 ~ useEffect ~ isDesktop:`, isDesktop)
-        console.log(`🚀 ~ useEffect ~ isMobile:`, isMobile)
+    // useEffect(() => {
+    //     console.log(`🚀 ~ useEffect ~ isDesktop:`, isDesktop)
+    //     console.log(`🚀 ~ useEffect ~ isMobile:`, isMobile)
 
-        setIsDesktop(isDesktop)
-        setIsMobile(isMobile)
-    }, [isMobile, isDesktop, setIsDesktop, setIsMobile])
+    //     setIsDesktop(isDesktop)
+    //     setIsMobile(isMobile)
+    // }, [isMobile, isDesktop, setIsDesktop, setIsMobile])
   
   return (
     <header className="app-header">

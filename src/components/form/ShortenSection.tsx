@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import './ShortenSection.css'
-import { DeviceType, PartialShortenResult, ShortenResult } from '../../types/ShortenTypes';
+import { DeviceType, ShortenResult } from '../../types/ShortenTypes';
 import ShortenForm from './ShortenForm';
 import ShortenResultList from './results/ShortenResultList';
-import { FormProvider, useForm } from 'react-hook-form';
 
 type Props = {
     currentDeviceType: DeviceType
@@ -18,7 +17,7 @@ const ShortenSection = (props: Props) => {
     const {currentDeviceType, setCurrentDeviceType} = props
     const {isMobile, setIsMobile} = props
     const {isDesktop, setIsDesktop} = props
-    const [shortenResponses, setShortenResponses] = useState<PartialShortenResult[]>([])
+    const [shortenResponses, setShortenResponses] = useState<ShortenResult[]>([])
     const [shortenResultCards, setShortenResultCards] = useState<JSX.Element[]>([])
 
     useEffect(() => {
@@ -72,13 +71,13 @@ const ShortenSection = (props: Props) => {
                         // shortenResultCards={shortenResultCards}
                         // setShortenResultCardsFun={setShortenResultCards}
                         shortenResponses={shortenResponses}
-                        setShortenResponsesFun={setShortenResponses}
+                        setShortenResponses={setShortenResponses}
                     />
                 </div>
                 <ShortenResultList
-                    setShortenResponsesFun={setShortenResponses}
+                    setShortenResponses={setShortenResponses}
                     shortenResponses={shortenResponses}
-                    setShortenResultCardsFun={setShortenResultCards}
+                    setShortenResultCards={setShortenResultCards}
                     shortenResultCards={shortenResultCards}
                 />
             </div>

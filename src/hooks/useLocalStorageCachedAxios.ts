@@ -1,4 +1,4 @@
-import { SHORTEN_API_URL, ShortenRequestConfig, SHORTEN_REQ_OPTS, ShortenResult, PartialShortenResult, ShortenSuccessResponse } from "../types/ShortenTypes"
+import { SHORTEN_API_URL, ShortenRequestConfig, SHORTEN_REQ_OPTS } from "../types/ShortenTypes"
 // Import dependencies
 import { AxiosRequestConfig } from 'axios'
 import { setupCache } from 'axios-cache-adapter'

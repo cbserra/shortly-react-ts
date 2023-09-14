@@ -1,6 +1,6 @@
-import React, { RefObject, useEffect, useRef, useState } from "react"
+import React, { RefObject, useEffect, useRef } from "react"
 import './ShortenResultList.css'
-import { PartialShortenResult, ShortenResult } from "../../../types/ShortenTypes"
+import { ShortenResult } from "../../../types/ShortenTypes"
 import ShortenResultCard from "./ShortenResultCard"
 import { useFormContext } from "react-hook-form"
 
@@ -8,16 +8,14 @@ const LS_SHORTEN_RESPONSES = 'shortenResponses'
 
 type Props = {
     shortenResultCards: JSX.Element[]
-    setShortenResultCardsFun: React.Dispatch<React.SetStateAction<JSX.Element[]>>
-    shortenResponses: PartialShortenResult[]
-    setShortenResponsesFun: React.Dispatch<React.SetStateAction<PartialShortenResult[]>>
+    setShortenResultCards: React.Dispatch<React.SetStateAction<JSX.Element[]>>
+    shortenResponses: ShortenResult[]
+    setShortenResponses: React.Dispatch<React.SetStateAction<ShortenResult[]>>
 }
 
 const ShortenResultList = (props : Props) => {
-    const setShortenResultCards = props.setShortenResultCardsFun
-    const setShortenResponses = props.setShortenResponsesFun
-    const shortenResponses = props.shortenResponses
-    const shortenResultCards = props.shortenResultCards
+    const {shortenResultCards, setShortenResultCards} = props
+    const {shortenResponses, setShortenResponses} = props
 
     const formData = useFormContext()
     const { formState: { isSubmitSuccessful, isValid }} = formData
@@ -70,21 +68,9 @@ const ShortenResultList = (props : Props) => {
     }, [isSubmitSuccessful, isValid, setShortenResultCards, shortenResponses]);
 
     return (
-        shortenResultCards && (
-            <div className='shorten-result-container'>
-                {shortenResponses?.length && (
-                    shortenResponses
-                        .map((result, index) => 
-                            <ShortenResultCard 
-                                key={result?.code || '1'} 
-                                shortUrl={result?.short_link || ''} 
-                                targetUrl={result?.original_link || ''}
-                                refProp={index === shortenResponses.length - 1 ? scrollToRef : null}
-                            />
-                        )
-                )}
-            </div>
-        )
+        <div className='shorten-result-container'>
+            { shortenResultCards?.length > 0 && (shortenResultCards) }
+        </div>
     )
 }
 

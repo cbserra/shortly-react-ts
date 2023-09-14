@@ -1,10 +1,11 @@
-import React, { BaseSyntheticEvent, useEffect, useState } from 'react'
+import React, { BaseSyntheticEvent, useEffect } from 'react'
 import { SubmitHandler, useFormContext } from 'react-hook-form'
 import { useLocalStorageCachedAxios } from '../../hooks/useLocalStorageCachedAxios'
-import { ShortenResult, ShortenSuccessResponse, ShortenErrorResponse, SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS, FormValues, DeviceType, PartialShortenResult } from '../../types/ShortenTypes'
-import { AxiosError, AxiosResponse } from 'axios'
+import { ShortenResult, ShortenSuccessResponse, ShortenErrorResponse, SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS, FormValues, DeviceType } from '../../types/ShortenTypes'
+import { AxiosError } from 'axios'
 import { FormError } from './FormError'
 import './ShortenForm.css'
+import MediaQuery, { useMediaQuery } from 'react-responsive'
 
 type Props = {
     currentDeviceType: DeviceType
@@ -15,8 +16,8 @@ type Props = {
     setIsDesktop: (value: React.SetStateAction<boolean>) => void
   // shortenResultCards: JSX.Element[]
   // setShortenResultCardsFun: React.Dispatch<React.SetStateAction<JSX.Element[]>>
-  shortenResponses: PartialShortenResult[]
-  setShortenResponsesFun: React.Dispatch<React.SetStateAction<PartialShortenResult[]>>
+    shortenResponses: ShortenResult[]
+    setShortenResponses: React.Dispatch<React.SetStateAction<ShortenResult[]>>
 }
 
 const ShortenForm = (props: Props) => {
@@ -26,13 +27,12 @@ const ShortenForm = (props: Props) => {
     // const [shortenResponses, setShortenResponses] = useState(props.shortenResponses)
   // const [shortenResponses, setShortenResponses] = useState(props.shortenResponses)
   // const [shortenResultCards, setShortenResultCards] = useState(props.shortenResultCards)
-  const shortenResponses = props.shortenResponses
-  const setShortenResponses = props.setShortenResponsesFun
+  const {shortenResponses, setShortenResponses} = props
 
   const formData = useFormContext<FormValues>()
   const { handleSubmit, setError, formState, register } = formData
 
-  const [{ data, loading, error: axiosError }, fetch] = useLocalStorageCachedAxios<ShortenSuccessResponse, any, ShortenErrorResponse>(SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS)
+  const [{ loading, error: axiosError }, fetch] = useLocalStorageCachedAxios<ShortenSuccessResponse, any, ShortenErrorResponse>(SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS)
 
   useEffect(() => {
       console.log(`🚀 ~ ShortenForm ~ useEffect ~ props.currentDeviceType:`, props.currentDeviceType)
@@ -50,34 +50,6 @@ const ShortenForm = (props: Props) => {
       setIsMobile((prevVal) => !prevVal)
       setIsDesktop((prevVal) => !prevVal)
   }, [props.isMobile, props.isDesktop, setIsMobile, setIsDesktop])
-
-  // useEffect(() => {
-  //     console.log(`🚀 ~ useEffect ~ isDesktop:`, isDesktop)
-  //     console.log(`🚀 ~ useEffect ~ isMobile:`, isMobile)
-
-  //     setIsMobile((prevVal) => !prevVal)
-  //     setIsDesktop((prevVal) => !prevVal)
-  // }, [isMobile, isDesktop, setIsMobile, setIsDesktop])
-
-  // useEffect(() => {
-  //   console.log(`🚀 ~ useEffect ~ data:`, data)
-    
-  //   if (data?.ok && data.result !== undefined) {
-  //     const success = data.result
-  //     console.log(`🚀 ~ useEffect ~ success:`, success)
-
-  //     if (shortenResponses?.some(res => res.code === success.code)) {
-  //       console.debug("already have a response with matching code: " + success.code)
-  //       return
-  //     }
-
-  //     if (shortenResponses && shortenResponses.length) {
-  //       setShortenResponses((prevResps: PartialShortenResult[]) => [...prevResps, success])
-  //     } else {
-  //       setShortenResponses([success])
-  //     }
-  //   }
-  // }, [data, setShortenResponses, shortenResponses])
 
   useEffect(() => {
     if (axiosError?.isAxiosError && axiosError.message !== undefined) {
@@ -105,30 +77,62 @@ const ShortenForm = (props: Props) => {
         // ...SHORTEN_REQ_CONF,
         params: form //{ url: form['url'] } //reqParams 
       })
-      .then((resp: AxiosResponse<ShortenSuccessResponse, any>) => {
-        console.log(`🚀 ~ .then ~ resp:`, resp)
-        console.log(`🚀 ~ useEffect ~ data:`, data)
-    
-        if (data?.ok && data.result !== undefined) {
-          const success = data.result
-          console.log(`🚀 ~ useEffect ~ success:`, success)
+      .then((response) => {
+        console.debug(`🚀 ~ .then ~ response:`, response)
+            
+        if (response.data.ok && response.data.result !== undefined) {
+          const success = response.data.result
+          console.debug(`🚀 ~ .then ~ success:`, success)
 
           if (shortenResponses?.some(res => res.code === success.code)) {
             console.debug("already have a response with matching code: " + success.code)
             return
           }
-
-          if (shortenResponses && shortenResponses.length) {
-            setShortenResponses((prevResps: PartialShortenResult[]) => [...prevResps, success])
+          // console.debug(JSON.stringify(success))
+          if (shortenResponses && shortenResponses.length > 0) {
+            setShortenResponses((prevResps: ShortenResult[]) => [...prevResps, success])
           } else {
             setShortenResponses([success])
           }
+        } else if (axiosError?.isAxiosError && axiosError.message !== undefined) {
+          console.log(`🚀 ~ .then ~ error:`, axiosError)
+
+          console.error(`❗️ ~ .then ~ error.code:`, axiosError.code)
+          console.error(`❗️ ~ .then ~ error.cause:`, axiosError.cause)
+          setError("url", {message: `Axios Error detected during refetch: ${JSON.stringify(axiosError)}`})
         }
-      })
-      .catch((err: any) => {
-        const errJson = JSON.stringify(err)
-        setError("url", {message: `Error caught from fetch: ${errJson}`});  
-      })
+
+        evt?.target.reset()
+    })
+    // )
+    // .catch((err: AxiosError<ShortenErrorResponse>) => {
+    //   console.error(`❗️ ~ err:`, err)
+    //   setError("url", {message: `Error thrown from API: ${JSON.stringify(err.response?.data.error)}`});
+    // })
+    //   .then((resp: AxiosResponse<ShortenSuccessResponse, any>) => {
+    //     console.log(`🚀 ~ .then ~ resp:`, resp)
+    //     console.log(`🚀 ~ useEffect ~ data:`, data)
+    
+    //     if (data?.ok && data.result !== undefined) {
+    //       const success = data.result
+    //       console.log(`🚀 ~ useEffect ~ success:`, success)
+
+    //       if (shortenResponses?.some(res => res.code === success.code)) {
+    //         console.debug("already have a response with matching code: " + success.code)
+    //         return
+    //       }
+
+    //       if (shortenResponses && shortenResponses.length) {
+    //         setShortenResponses((prevResps: ShortenResult[]) => [...prevResps, success])
+    //       } else {
+    //         setShortenResponses([success])
+    //       }
+    //     }
+    //   })
+    //   .catch((err: any) => {
+    //     const errJson = JSON.stringify(err)
+    //     setError("url", {message: `Error caught from fetch: ${errJson}`});  
+    //   })
     } catch(err: any) {
       const axiosShortenErr: AxiosError<ShortenErrorResponse> = err.response?.data.error
       console.log(`🚀 ~ ShortenForm ~ axiosShortenErr:`, axiosShortenErr)
@@ -136,39 +140,21 @@ const ShortenForm = (props: Props) => {
       console.error(`❗️ ~ errJson:`, errJson)
       setError("url", {message: `Error thrown from API: ${errJson}`});
     }
-    // .then((response) => {
-    //   console.debug(`🚀 ~ .then ~ response:`, response)
-          
-    //   if (response.data.ok && response.data.result !== undefined) {
-    //     const success = response.data.result
-    //     console.debug(`🚀 ~ .then ~ success:`, success)
+  }
 
-    //     if (shortenResponses?.some(res => res.code === success.code)) {
-    //       console.debug("already have a response with matching code: " + success.code)
-    //       return
-    //     }
-    //     // console.debug(JSON.stringify(success))
-    //     if (shortenResponses && shortenResponses.length > 0) {
-    //       setShortenResponses((prevResps: ShortenResult[]) => [...prevResps, success])
-    //     } else {
-    //       setShortenResponses([success])
-    //     }
-      // } else 
-      // if (axiosError?.isAxiosError && axiosError.message !== undefined) {
-      //   console.log(`🚀 ~ .then ~ error:`, axiosError)
+  const handleMediaQueryChange = (matches: any) => {
+    console.log(`🚀 ~ handleMediaQueryChange ~ matches:`, matches)
+    // matches will be true or false based on the value for the media query
+  }
 
-      //   console.error(`❗️ ~ .then ~ error.code:`, axiosError.code)
-      //   console.error(`❗️ ~ .then ~ error.cause:`, axiosError.cause)
-      //   setError("url", {message: `Axios Error detected during refetch: ${JSON.stringify(axiosError)}`})
-      // }
+  const Desktop = (props: { children: any }) => {
+    const isDesktop = useMediaQuery({ minWidth: 1024 })
+    return isDesktop ? props.children : null
+  }
 
-      // evt?.target.reset()
-    // }
-    // )
-    // .catch((err: AxiosError<ShortenErrorResponse>) => {
-    //   console.error(`❗️ ~ err:`, err)
-    //   setError("url", {message: `Error thrown from API: ${JSON.stringify(err.response?.data.error)}`});
-    // })
+  const Mobile = (props: { children: any }) => {
+    const isMobile = useMediaQuery({ maxWidth: 1023 })
+    return isMobile ? props.children : null
   }
   
   return (
@@ -199,10 +185,26 @@ const ShortenForm = (props: Props) => {
               placeholder="Shorten a link here..." 
               required 
             />
-            { isMobile && <FormError isDesktop={isDesktop} isMobile={isMobile} formErrors={formState.errors} />}
+            {/* <MediaQuery maxWidth={1023} onChange={handleMediaQueryChange}> */}
+            <Mobile>
+              <FormError 
+                // isDesktop={isDesktop} 
+                // isMobile={isMobile} 
+                formErrors={formState.errors} 
+              />
+            </Mobile>
+            {/* </MediaQuery> */}
             <input type="submit" className="submit-btn" value="Shorten It!" />
           </div>
-          { isDesktop && <FormError isDesktop={isDesktop} isMobile={isMobile} formErrors={formState.errors} />}
+          {/* <MediaQuery minWidth={1024} onChange={handleMediaQueryChange}> */}
+          <Desktop>
+              <FormError 
+                isDesktop={isDesktop} 
+                isMobile={isMobile} 
+                formErrors={formState.errors} 
+              />
+          </Desktop>
+          {/* </MediaQuery> */}
         </form>
     </div>
   )

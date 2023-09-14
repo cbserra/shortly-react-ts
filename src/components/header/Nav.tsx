@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
 import {ReactComponent as ShortlyLogo} from '../../images/logo.svg'
 import Hamburger from './Hamburger'
 import Menu from './Menu'
 import './Nav.css'
 import { DeviceType } from '../../types/ShortenTypes'
+import { useEffect } from 'react'
 
 type Props = {
     isMobile: boolean
@@ -19,9 +19,11 @@ type Props = {
 }
 
 const Nav = (props: Props) => {
-    const {isMobile, setIsMobile} = props
-    const {isDesktop, setIsDesktop} = props
+    // const {isMobile, setIsMobile} = props
+    // const {isDesktop, setIsDesktop} = props
+    const {isMobile, isDesktop} = props
     const {toggleMenuDisplay, setToggleMenuDisplay} = props
+    const {currentDeviceType: deviceType, setCurrentDeviceType: setDeviceType} = props
 
     const toggleMobileMenu = (): void => {
       console.log(`🚀 ~ toggleMobileMenu ~ toggleMenuDisplay:`, toggleMenuDisplay)
@@ -29,14 +31,19 @@ const Nav = (props: Props) => {
     }
 
     useEffect(() => {
-        // setPreviousDeviceType(currentDeviceType)
-        // setCurrentDeviceType(isDesktop ? DeviceType.Desktop : DeviceType.Mobile)
-        console.log(`🚀 ~ useEffect ~ props.isDesktop:`, props.isDesktop)
-        console.log(`🚀 ~ useEffect ~ props.isMobile:`, props.isMobile)
+        console.log(`🚀 ~ Nav ~ deviceType:`, deviceType)    
+    }, [deviceType])
+    
 
-        setIsDesktop(props.isDesktop)
-        setIsMobile(props.isMobile)
-    }, [props.isMobile, props.isDesktop, setIsDesktop, setIsMobile])
+    // useEffect(() => {
+    //     // setPreviousDeviceType(currentDeviceType)
+    //     // setCurrentDeviceType(isDesktop ? DeviceType.Desktop : DeviceType.Mobile)
+    //     console.log(`🚀 ~ useEffect ~ props.isDesktop:`, props.isDesktop)
+    //     console.log(`🚀 ~ useEffect ~ props.isMobile:`, props.isMobile)
+
+    //     setIsDesktop(props.isDesktop)
+    //     setIsMobile(props.isMobile)
+    // }, [props.isMobile, props.isDesktop, setIsDesktop, setIsMobile])
 
     // useEffect(() => {
     //     console.log(`🚀 ~ useEffect ~ isDesktop:`, isDesktop)
@@ -46,66 +53,62 @@ const Nav = (props: Props) => {
     //     setIsMobile(isMobile)
     // }, [isMobile, isDesktop])
 
-    const handleWindowResize = (matches: any): void => {
-        const mediaQuery = window.matchMedia('(min-width: 1024px)')
+    // const handleWindowResize = (matches: any): void => {
+    //     const mediaQuery = window.matchMedia('(min-width: 1024px)')
 
-        if (mediaQuery.matches && !isDesktop) {
-            console.log(`🚀 ~ handleWindowResize ~ mediaQuery:`, mediaQuery)
-            console.log(`🚀 ~ handleWindowResize ~ now matches Desktop:`, matches)
-            setIsDesktop((prevVal) => !prevVal)
-            setIsMobile((prevVal) => !prevVal)
-        } else if (!mediaQuery.matches && !isMobile) {
-            console.log(`🚀 ~ handleWindowResize ~ mediaQuery:`, mediaQuery)
-            console.log(`🚀 ~ handleWindowResize ~ now matches Mobile:`, matches)
-            setIsMobile((prevVal) => !prevVal)
-            setIsDesktop((prevVal) => !prevVal)
-        }
+    //     if (mediaQuery.matches && !isDesktop) {
+    //         console.log(`🚀 ~ handleWindowResize ~ mediaQuery:`, mediaQuery)
+    //         console.log(`🚀 ~ handleWindowResize ~ now matches Desktop:`, matches)
+    //         setIsDesktop((prevVal) => !prevVal)
+    //         setIsMobile((prevVal) => !prevVal)
+    //     } else if (!mediaQuery.matches && !isMobile) {
+    //         console.log(`🚀 ~ handleWindowResize ~ mediaQuery:`, mediaQuery)
+    //         console.log(`🚀 ~ handleWindowResize ~ now matches Mobile:`, matches)
+    //         setIsMobile((prevVal) => !prevVal)
+    //         setIsDesktop((prevVal) => !prevVal)
+    //     }
 
-    }
+    // }
 
-    const listenToScroll = (): void => {
-        let heightToHideFrom = 100;
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    // const listenToScroll = (): void => {
+    //     let heightToHideFrom = 100;
+    //     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
 
-        if (isMobile && winScroll > heightToHideFrom) {  
-            // console.debug(`🚀 ~ listendToScroll ~ winScroll:`, winScroll)
-            // console.debug(`🚀 ~ listenToScroll ~ heightToHideFrom:`, heightToHideFrom)
-            // console.debug(`🚀 ~ listenToScroll ~ toggleMenuDisplay:`, toggleMenuDisplay)
+    //     if (isMobile && winScroll > heightToHideFrom) {  
             
-            if (toggleMenuDisplay) {
-                console.debug(`🚀 ~ listendToScroll ~ winScroll:`, winScroll)
-                console.debug(`🚀 ~ listenToScroll ~ heightToHideFrom:`, heightToHideFrom)
-                console.debug(`🚀 ~ listenToScroll ~ toggleMenuDisplay:`, toggleMenuDisplay)
+    //         if (toggleMenuDisplay) {
+    //             console.debug(`🚀 ~ listendToScroll ~ winScroll:`, winScroll)
+    //             console.debug(`🚀 ~ listenToScroll ~ heightToHideFrom:`, heightToHideFrom)
+    //             console.debug(`🚀 ~ listenToScroll ~ toggleMenuDisplay:`, toggleMenuDisplay)
                 
-                setToggleMenuDisplay(false);
-            }
-        }
-    };
+    //             setToggleMenuDisplay(false);
+    //         }
+    //     }
+    // };
 
-    useEffect(() => {   
-      window.addEventListener("scroll", listenToScroll);
-      return () => 
-          window.removeEventListener("scroll", listenToScroll); 
-    })
+    // useEffect(() => {   
+    //   window.addEventListener("scroll", listenToScroll);
+    //   return () => 
+    //       window.removeEventListener("scroll", listenToScroll); 
+    // })
 
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowResize)
+    // useEffect(() => {
+    //     window.addEventListener('resize', handleWindowResize)
 
-        return () => {
-            window.removeEventListener("resize", handleWindowResize);
-        };
-    })
+    //     return () => {
+    //         window.removeEventListener("resize", handleWindowResize);
+    //     };
+    // })
 
     return (
         <nav>
             <ShortlyLogo />
             { isDesktop && (
-                <Menu toggleMenu={true} deviceType={DeviceType.Desktop.toLowerCase()} />
-                // <Menu />
+                <Menu toggleMenu={true} deviceType={DeviceType.Desktop} setDeviceType={setDeviceType} />
             )}
             { isMobile && (
                 <>
-                    <Menu toggleMenu={toggleMenuDisplay} deviceType={DeviceType.Mobile.toLowerCase()} />
+                    <Menu toggleMenu={toggleMenuDisplay} deviceType={DeviceType.Mobile} setDeviceType={setDeviceType} />
                     <Hamburger onClickFun={toggleMobileMenu} />
                 </>
             )}
