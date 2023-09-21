@@ -9,10 +9,46 @@ type Props = {
     setDeviceType?: (value: React.SetStateAction<DeviceType>) => void
 }
 
+type MenuLink = {
+    classNames?: string | undefined
+    id?: string | undefined
+    title?: string
+    useButton?: boolean
+    buttonClassname?: string
+}
+
+const MENU_LINKS: MenuLink[] = [
+    {id: "features-link", title: "Features" },
+    {id: "pricing-link", title: "Pricing" },
+    {id: "resources-link", title: "Resources" },
+    {classNames: 'hor-line', useButton: false },
+    {id: "login-link", classNames: "push-right", title: "Login" },
+    {id: "sign-up-link",classNames: "sign-up", buttonClassname: "round-blue-btn", title: "Sign Up" },
+]
+
 const Menu = (props: Props) => {
     // const getMenuClass = (toggleMenu: boolean | undefined): string => {
     //     return toggleMenu === undefined ? '' : (toggleMenu ? 'show' : 'hide')
     // }
+
+    type MenuProps = {
+        menuLinks: MenuLink[]
+    }
+
+    const MenuLinks = (props: MenuProps) => {
+        return (
+            <ul id="nav-menu" className={classNames}>
+                {props.menuLinks
+                    .map((link, index) => 
+                        <li key={index} id={link.id} className={link.classNames}>
+                            <button className={link.buttonClassname ? link.buttonClassname : 'button-link'}>
+                                {link.title}
+                            </button>
+                        </li>)
+                }
+            </ul>
+        )
+    }
 
     const getMenuClass = (toggleMenu: boolean | undefined): string => {
         return (toggleMenu === undefined || !toggleMenu) ? '' : 'show'
@@ -60,16 +96,7 @@ const Menu = (props: Props) => {
     // }, [toggleMenu, deviceType])
     
     return (
-        <ul id="nav-menu" className={classNames}>
-            <li id="features-link">Features</li>
-            <li id="pricing-link">Pricing</li>
-            <li id="resources-link">Resources</li>
-            <li className='hor-line'></li>
-            <li id="login-link" className="push-right">Login</li>
-            <li id="sign-up-link" className="sign-up">
-                <button className="round-blue-btn">Sign Up</button>
-            </li>
-        </ul>
+        <MenuLinks key={1}  menuLinks={MENU_LINKS} />
     )
 }
 

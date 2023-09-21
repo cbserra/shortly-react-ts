@@ -11,7 +11,9 @@ const Footer = () => {
             <div className='list-container'>
                 <h1>{props.heading}</h1>
                 <ul>
-                    {props.links.map(item => <li key={item}><button className='button-link'>{item}</button></li>)}
+                    {props.links
+                        .map(item => <li key={item}><button className='button-link'>{item}</button></li>)
+                    }
                 </ul>
             </div>
         )

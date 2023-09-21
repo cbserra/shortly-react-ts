@@ -1,9 +1,20 @@
+div.mobile-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 div.mobile-icon-wrapper > button {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display: inline-block; */
     /* color: var(--dark-gray); */
     font-size: 27px;
     border: none;
     background-color: transparent;
+    height: 100%;
 }
 
 div.mobile-icon-wrapper > button > svg {
@@ -14,13 +25,5 @@ div.mobile-icon-wrapper > button > svg {
     div.mobile-icon-wrapper > button {
         display: none;
     }
-}
-
-@media (max-width: 1023px) {
-    /* div.mobile-icon-wrapper i {
-        display: inline-block;
-        color: var(--dark-gray);
-        font-size: 27px;
-    } */
 }
 
