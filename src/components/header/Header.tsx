@@ -5,23 +5,24 @@ import { DeviceType } from '../../types/ShortenTypes'
 
 type Props = {
   isMobile: boolean
-  setIsMobile: (value: React.SetStateAction<boolean>) => void
+  // setIsMobile: (value: React.SetStateAction<boolean>) => void
   isDesktop: boolean
-  setIsDesktop: (value: React.SetStateAction<boolean>) => void
+  // setIsDesktop: (value: React.SetStateAction<boolean>) => void
   toggleMenuDisplay: boolean
   setToggleMenuDisplay: React.Dispatch<React.SetStateAction<boolean>>
-  previousDeviceType: DeviceType
-  setPreviousDeviceType: (value: React.SetStateAction<DeviceType>) => void
-  currentDeviceType: DeviceType
-  setCurrentDeviceType:  (value: React.SetStateAction<DeviceType>) => void
+  previousDeviceType?: DeviceType
+  setPreviousDeviceType?: (value: React.SetStateAction<DeviceType>) => void
+  currentDeviceType?: DeviceType
+  setCurrentDeviceType?:  (value: React.SetStateAction<DeviceType>) => void
 }
 
 const Header = (props: Props) => {
-  const {isMobile, setIsMobile} = props
-  const {isDesktop, setIsDesktop} = props
+  const {isMobile, isDesktop} = props
+  // const {isMobile, setIsMobile} = props
+  // const {isDesktop, setIsDesktop} = props
   const {toggleMenuDisplay, setToggleMenuDisplay} = props
-  const {previousDeviceType, setPreviousDeviceType} = props
-  const {currentDeviceType, setCurrentDeviceType} = props
+  // const {previousDeviceType, setPreviousDeviceType} = props
+  // const {currentDeviceType, setCurrentDeviceType} = props
 
   // const listenToScroll = () => {
   //   let heightToHideFrom = 100;
@@ -56,15 +57,15 @@ const Header = (props: Props) => {
     <header className="app-header">
       <Nav 
         isMobile={isMobile} 
-        setIsMobile={setIsMobile}
+        // setIsMobile={setIsMobile}
         isDesktop={isDesktop}
-        setIsDesktop={setIsDesktop}
+        // setIsDesktop={setIsDesktop}
         toggleMenuDisplay={toggleMenuDisplay}
         setToggleMenuDisplay={setToggleMenuDisplay}
-        previousDeviceType={previousDeviceType}
-        setPreviousDeviceType={setPreviousDeviceType}
-        currentDeviceType={currentDeviceType}
-        setCurrentDeviceType={setCurrentDeviceType}
+        // previousDeviceType={previousDeviceType}
+        // setPreviousDeviceType={setPreviousDeviceType}
+        // currentDeviceType={currentDeviceType}
+        // setCurrentDeviceType={setCurrentDeviceType}
       />
     </header>
   )

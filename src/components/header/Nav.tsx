@@ -3,19 +3,19 @@ import Hamburger from './Hamburger'
 import Menu from './Menu'
 import './Nav.css'
 import { DeviceType } from '../../types/ShortenTypes'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
 type Props = {
     isMobile: boolean
-    setIsMobile: (value: React.SetStateAction<boolean>) => void
+    // setIsMobile: (value: React.SetStateAction<boolean>) => void
     isDesktop: boolean
-    setIsDesktop: (value: React.SetStateAction<boolean>) => void
+    // setIsDesktop: (value: React.SetStateAction<boolean>) => void
     toggleMenuDisplay: boolean
     setToggleMenuDisplay: React.Dispatch<React.SetStateAction<boolean>>
-    previousDeviceType: DeviceType
-    setPreviousDeviceType: (value: React.SetStateAction<DeviceType>) => void
-    currentDeviceType: DeviceType
-    setCurrentDeviceType:  (value: React.SetStateAction<DeviceType>) => void
+    previousDeviceType?: DeviceType
+    setPreviousDeviceType?: (value: React.SetStateAction<DeviceType>) => void
+    currentDeviceType?: DeviceType
+    setCurrentDeviceType?:  (value: React.SetStateAction<DeviceType>) => void
 }
 
 const Nav = (props: Props) => {
@@ -23,16 +23,26 @@ const Nav = (props: Props) => {
     // const {isDesktop, setIsDesktop} = props
     const {isMobile, isDesktop} = props
     const {toggleMenuDisplay, setToggleMenuDisplay} = props
-    const {currentDeviceType: deviceType, setCurrentDeviceType: setDeviceType} = props
+    // const {currentDeviceType: deviceType, setCurrentDeviceType: setDeviceType} = props
 
-    const toggleMobileMenu = (): void => {
-      console.log(`🚀 ~ toggleMobileMenu ~ toggleMenuDisplay:`, toggleMenuDisplay)
-      setToggleMenuDisplay((prevValue) => !prevValue) 
-    }
+    const toggleMobileMenu = useCallback(
+      () => {
+        // console.log(`🚀 ~ toggleMobileMenu ~ showMobileMenu:`, showMobileMenu)
+        // console.log(`🚀 ~ toggleMobileMenu ~ toggleMenuDisplay:`, toggleMenuDisplay)
+        // setToggleMenuDisplay(showMobileMenu) 
+        setToggleMenuDisplay((prevValue) => isDesktop ? isDesktop : !prevValue)
+      },
+      [isDesktop, setToggleMenuDisplay], //, toggleMenuDisplay],
+    )
+    // (showMobileMenu: boolean): void => {
+    //     console.log(`🚀 ~ toggleMobileMenu ~ showMobileMenu:`, showMobileMenu)
+    // //   console.log(`🚀 ~ toggleMobileMenu ~ toggleMenuDisplay:`, toggleMenuDisplay)
+    //     setToggleMenuDisplay(showMobileMenu) 
+    // }
 
-    useEffect(() => {
-        console.log(`🚀 ~ Nav ~ deviceType:`, deviceType)    
-    }, [deviceType])
+    // useEffect(() => {
+    //     console.log(`🚀 ~ Nav ~ deviceType:`, deviceType)    
+    // }, [deviceType])
     
 
     // useEffect(() => {
@@ -104,12 +114,23 @@ const Nav = (props: Props) => {
         <nav>
             <ShortlyLogo />
             { isDesktop && (
-                <Menu toggleMenu={true} deviceType={DeviceType.Desktop} setDeviceType={setDeviceType} />
+                <Menu 
+                    toggleMenu={false} 
+                    // deviceType={DeviceType.Desktop} 
+                    // setDeviceType={setDeviceType} 
+                />
             )}
             { isMobile && (
                 <>
-                    <Menu toggleMenu={toggleMenuDisplay} deviceType={DeviceType.Mobile} setDeviceType={setDeviceType} />
-                    <Hamburger onClickFun={toggleMobileMenu} />
+                    <Menu 
+                        toggleMenu={toggleMenuDisplay} 
+                        // deviceType={DeviceType.Mobile} 
+                        // setDeviceType={setDeviceType} 
+                    />
+                    {/* <Menu toggleMenu={false} deviceType={DeviceType.Mobile} setDeviceType={setDeviceType} /> */}
+                    <Hamburger 
+                        onClickFun={toggleMobileMenu} 
+                    />
                 </>
             )}
         </nav>

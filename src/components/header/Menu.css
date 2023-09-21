@@ -40,7 +40,7 @@ ul#nav-menu li {
     border-bottom: .5px solid var(--dark-gray);
 } */
 
-ul#nav-menu.mobile.show li.hor-line {
+/* ul#nav-menu.mobile.show li.hor-line {
     line-height: .1rem;
     height: .1rem;
     background-color: var(--dark-gray);
@@ -51,11 +51,16 @@ ul#nav-menu.mobile.show li.hor-line {
 
 ul#nav-menu.mobile.show li.hor-line {
     display: flex;
-}
+} */
 
-ul#nav-menu.desktop li.hor-line,
-ul#nav-menu.desktop.hide li.hor-line {
-    display: none;
+ul#nav-menu.show li.hor-line {
+    display: flex;
+    line-height: .1rem;
+    height: .1rem;
+    background-color: var(--dark-gray);
+    padding: unset;
+    opacity: 0.25;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* #login-link {
@@ -110,6 +115,11 @@ ul#nav-menu li.sign-up > button.round-blue-btn {
         color: var(--pretty-darn-white);
     }
 
+    ul#nav-menu li.hor-line {
+    /* ul#nav-menu.desktop.hide li.hor-line  */
+        display: none;
+    }
+
     /* #login {
         margin-left: auto;
     } */
@@ -121,52 +131,4 @@ ul#nav-menu li.sign-up > button.round-blue-btn {
     ul#nav-menu li.sign-up > button.round-blue-btn {
         width: max-content;
     }
-}
-  
-@media (max-width: 1023px) {
-
-    /* #nav-menu {
-        background-color: var(--dark-violet);
-        position: absolute;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: column;
-        min-width: 100%;
-        top: 75px;
-        border-radius: 10px;
-        padding: 30px;
-        transition: .5s; 
-        min-height: 335px;
-    }
-
-    ul#nav-menu.show {
-        display: flex;
-    }
-
-    ul#nav-menu.hide {
-        display: none;
-    }
-
-    ul#nav-menu li {
-        list-style-type: none;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 27px;
-        min-width: 100%;
-        padding: 15px;
-        color: #FFFFFF;
-    }
-
-    #resources-link {
-        padding-bottom: 30px;
-        border-bottom: .5px solid var(--dark-gray);
-    }
-
-    #login-link {
-        padding-top: 30px;
-        border-top: .5px solid var(--dark-gray);
-    } */
-
-
 }

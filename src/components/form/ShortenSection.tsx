@@ -5,37 +5,37 @@ import ShortenForm from './ShortenForm';
 import ShortenResultList from './results/ShortenResultList';
 
 type Props = {
-    currentDeviceType: DeviceType
-    setCurrentDeviceType: React.Dispatch<React.SetStateAction<DeviceType>>
+    currentDeviceType?: DeviceType
+    setCurrentDeviceType?: React.Dispatch<React.SetStateAction<DeviceType>>
     isMobile: boolean
-    setIsMobile: (value: React.SetStateAction<boolean>) => void
+    // setIsMobile: (value: React.SetStateAction<boolean>) => void
     isDesktop: boolean
-    setIsDesktop: (value: React.SetStateAction<boolean>) => void
+    // setIsDesktop: (value: React.SetStateAction<boolean>) => void
 }
 
 const ShortenSection = (props: Props) => {
-    const {currentDeviceType, setCurrentDeviceType} = props
-    const {isMobile, setIsMobile} = props
-    const {isDesktop, setIsDesktop} = props
+    // const {currentDeviceType, setCurrentDeviceType} = props
+    const {isMobile, isDesktop} = props
+    // const {, setIsDesktop} = props
     const [shortenResponses, setShortenResponses] = useState<ShortenResult[]>([])
     const [shortenResultCards, setShortenResultCards] = useState<JSX.Element[]>([])
 
-    useEffect(() => {
-        console.log(`🚀 ~ ShortenForm ~ useEffect ~ props.currentDeviceType:`, props.currentDeviceType)
-        setCurrentDeviceType(props.currentDeviceType)
-    }, [props.currentDeviceType, setCurrentDeviceType])
+    // useEffect(() => {
+    //     console.log(`🚀 ~ ShortenForm ~ useEffect ~ props.currentDeviceType:`, props.currentDeviceType)
+    //     setCurrentDeviceType(props.currentDeviceType)
+    // }, [props.currentDeviceType, setCurrentDeviceType])
 
-    useEffect(() => {
-        console.log(`🚀 ~ ShortenSection ~ useEffect ~ currentDeviceType:`, currentDeviceType)
-    }, [currentDeviceType])
+    // useEffect(() => {
+    //     console.log(`🚀 ~ ShortenSection ~ useEffect ~ currentDeviceType:`, currentDeviceType)
+    // }, [currentDeviceType])
 
-    useEffect(() => {
-        console.log(`🚀 ~ useEffect ~ props.isDesktop:`, props.isDesktop)
-        console.log(`🚀 ~ useEffect ~ props.isMobile:`, props.isMobile)
+    // useEffect(() => {
+    //     console.log(`🚀 ~ useEffect ~ props.isDesktop:`, props.isDesktop)
+    //     console.log(`🚀 ~ useEffect ~ props.isMobile:`, props.isMobile)
 
-        setIsDesktop(props.isDesktop)
-        setIsMobile(props.isMobile)
-    }, [props.isDesktop, props.isMobile, setIsDesktop, setIsMobile])
+    //     // setIsDesktop(props.isDesktop)
+    //     // setIsMobile(props.isMobile)
+    // }, [props.isDesktop, props.isMobile])
 
     // useEffect(() => {
     //     console.log(`🚀 ~ useEffect ~ isDesktop:`, isDesktop)
@@ -62,12 +62,12 @@ const ShortenSection = (props: Props) => {
             <div className='shorten-section-container'>
                 <div className="shorten-url-container">
                     <ShortenForm 
-                        setCurrentDeviceType={setCurrentDeviceType}
-                        currentDeviceType={currentDeviceType}
+                        // setCurrentDeviceType={setCurrentDeviceType}
+                        // currentDeviceType={currentDeviceType}
                         isMobile={isMobile} 
-                        setIsMobile={setIsMobile}
+                        // setIsMobile={setIsMobile}
                         isDesktop={isDesktop}
-                        setIsDesktop={setIsDesktop}
+                        // setIsDesktop={setIsDesktop}
                         // shortenResultCards={shortenResultCards}
                         // setShortenResultCardsFun={setShortenResultCards}
                         shortenResponses={shortenResponses}

@@ -22,7 +22,9 @@
     "react-hook-form": "^7.30.0",
     "react-responsive": "^9.0.0-beta.6",
     "react-scripts": "5.0.1",
+    "react-simple-matchmedia": "^3.3.0",
     "typescript": "^4.6.4",
+    "use-match-media-hook": "^1.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

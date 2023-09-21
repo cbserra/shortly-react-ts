@@ -3,13 +3,19 @@ import './App.css';
 import GetStarted from './GetStarted';
 import ShortenSection from './form/ShortenSection';
 import Statistics from './Statistics';
-import { useMediaQuery } from 'react-responsive';
 import { useEffect, useState } from 'react';
 import BoostLinks from './BoostLinks';
 import Footer from './footer/Footer';
 import { DeviceType, FormValues } from '../types/ShortenTypes';
 import Header from './header/Header';
 import { FormProvider, useForm } from 'react-hook-form';
+import useMatchMedia from 'use-match-media-hook'
+
+const queries = [
+  '(max-width: 1023px)',
+  '(min-width: 1024px)'
+]
+
 
 function App() {
 
@@ -52,21 +58,30 @@ function App() {
   //   undefined,
   //   handleWindowResize
   // )
-  const isDesktop = useMediaQuery({query: '(min-width: 1024px)' })
+  // const isDesktop = useMediaQuery({query: '(min-width: 1024px)' })
   // const isMobile = useMediaQuery(
   //   { maxWidth: 1023 },
   //   undefined,
   //   handleWindowResize
   // )
-  const isMobile = useMediaQuery({ query: '(max-width: 1023px)' })
+  // const isMobile = useMediaQuery({ query: '(max-width: 1023px)' })
+
+ const [isMobile, isDesktop] = useMatchMedia(queries)
   
-  const [isMobileState, setIsMobileState] = useState(isMobile)
-  const [isDesktopState, setIsDesktopState] = useState(isDesktop)
+  // const [isMobileState, setIsMobileState] = useState(isMobile)
+  // const [isDesktopState, setIsDesktopState] = useState(isDesktop)
   const [toggleMenuDisplay, setToggleMenuDisplay] = useState(false)
   const [previousDeviceType, setPreviousDeviceType] = useState<DeviceType>(!isDesktop ? DeviceType.Desktop : DeviceType.Mobile)
   const [currentDeviceType, setCurrentDeviceType] = useState<DeviceType>(isDesktop ? DeviceType.Desktop : DeviceType.Mobile)
 
   const listenToScroll = () => {
+    if (isDesktop) {
+      return
+    }
+    if (!toggleMenuDisplay) {
+      return
+    }
+
     let heightToHideFrom = 100;
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
 
@@ -101,19 +116,19 @@ function App() {
     // setIsDesktopState(isDesktop)
   }, [isDesktop]) //, isDesktopState])
 
-    useEffect(() => {
-    // console.log(`🚀 ~ App ~ isMobile:`, isMobile)
-    console.log(`🚀 ~ App ~ isMobileState:`, isMobileState)
+  //   useEffect(() => {
+  //   // console.log(`🚀 ~ App ~ isMobile:`, isMobile)
+  //   console.log(`🚀 ~ App ~ isMobileState:`, isMobileState)
 
-    // setIsMobileState(isMobile)
-  }, [isMobileState])
+  //   // setIsMobileState(isMobile)
+  // }, [isMobileState])
 
-    useEffect(() => {
-    // console.log(`🚀 ~ App ~ isDesktop:`, isDesktop)
-    console.log(`🚀 ~ App ~ isDesktopState:`, isDesktopState)
+  //   useEffect(() => {
+  //   // console.log(`🚀 ~ App ~ isDesktop:`, isDesktop)
+  //   console.log(`🚀 ~ App ~ isDesktopState:`, isDesktopState)
 
-    // setIsDesktopState(isDesktop)
-  }, [isDesktopState])
+  //   // setIsDesktopState(isDesktop)
+  // }, [isDesktopState])
   
     useEffect(() => {
     console.log(`🚀 ~ useEffect ~ currentDeviceType:`, currentDeviceType)
@@ -135,10 +150,10 @@ function App() {
     <div className="App">
       <div className="container top-container">
         <Header 
-          isMobile={isMobileState} 
-          setIsMobile={setIsMobileState}
-          isDesktop={isDesktopState}
-          setIsDesktop={setIsDesktopState}
+          isMobile={isMobile} 
+          // setIsMobile={setIsMobileState}
+          isDesktop={isDesktop}
+          // setIsDesktop={setIsDesktopState}
           toggleMenuDisplay={toggleMenuDisplay}
           setToggleMenuDisplay={setToggleMenuDisplay}
           previousDeviceType={previousDeviceType}
@@ -154,10 +169,10 @@ function App() {
             <ShortenSection 
               setCurrentDeviceType={setCurrentDeviceType}
               currentDeviceType={currentDeviceType}
-              isMobile={isMobileState} 
-              setIsMobile={setIsMobileState}
-              isDesktop={isDesktopState}
-              setIsDesktop={setIsDesktopState}
+              isMobile={isMobile} 
+              // setIsMobile={setIsMobileState}
+              isDesktop={isDesktop}
+              // setIsDesktop={setIsDesktopState}
             />
           </FormProvider>
           <Statistics />

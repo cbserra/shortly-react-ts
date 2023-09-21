@@ -5,15 +5,15 @@ import { ShortenResult, ShortenSuccessResponse, ShortenErrorResponse, SHORTEN_RE
 import { AxiosError } from 'axios'
 import { FormError } from './FormError'
 import './ShortenForm.css'
-import MediaQuery, { useMediaQuery } from 'react-responsive'
+// import MediaQuery, { useMediaQuery } from 'react-responsive'
 
 type Props = {
-    currentDeviceType: DeviceType
-    setCurrentDeviceType: React.Dispatch<React.SetStateAction<DeviceType>>
+    currentDeviceType?: DeviceType
+    setCurrentDeviceType?: React.Dispatch<React.SetStateAction<DeviceType>>
     isMobile: boolean
-    setIsMobile: (value: React.SetStateAction<boolean>) => void
+    // setIsMobile: (value: React.SetStateAction<boolean>) => void
     isDesktop: boolean
-    setIsDesktop: (value: React.SetStateAction<boolean>) => void
+    // setIsDesktop: (value: React.SetStateAction<boolean>) => void
   // shortenResultCards: JSX.Element[]
   // setShortenResultCardsFun: React.Dispatch<React.SetStateAction<JSX.Element[]>>
     shortenResponses: ShortenResult[]
@@ -21,9 +21,9 @@ type Props = {
 }
 
 const ShortenForm = (props: Props) => {
-  const {currentDeviceType, setCurrentDeviceType} = props
-  const {isMobile, setIsMobile} = props
-  const {isDesktop, setIsDesktop} = props
+  // const {currentDeviceType, setCurrentDeviceType} = props
+  const {isMobile, isDesktop} = props
+  // const {isDesktop, setIsDesktop} = props
     // const [shortenResponses, setShortenResponses] = useState(props.shortenResponses)
   // const [shortenResponses, setShortenResponses] = useState(props.shortenResponses)
   // const [shortenResultCards, setShortenResultCards] = useState(props.shortenResultCards)
@@ -34,22 +34,22 @@ const ShortenForm = (props: Props) => {
 
   const [{ loading, error: axiosError }, fetch] = useLocalStorageCachedAxios<ShortenSuccessResponse, any, ShortenErrorResponse>(SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS)
 
-  useEffect(() => {
-      console.log(`🚀 ~ ShortenForm ~ useEffect ~ props.currentDeviceType:`, props.currentDeviceType)
-      setCurrentDeviceType(props.currentDeviceType)
-  }, [props.currentDeviceType, setCurrentDeviceType])
+  // useEffect(() => {
+  //     console.log(`🚀 ~ ShortenForm ~ useEffect ~ props.currentDeviceType:`, props.currentDeviceType)
+  //     setCurrentDeviceType(props.currentDeviceType)
+  // }, [props.currentDeviceType, setCurrentDeviceType])
 
-  useEffect(() => {
-      console.log(`🚀 ~ ShortenForm ~ useEffect ~ currentDeviceType:`, currentDeviceType)
-  }, [currentDeviceType])
+  // useEffect(() => {
+  //     console.log(`🚀 ~ ShortenForm ~ useEffect ~ currentDeviceType:`, currentDeviceType)
+  // }, [currentDeviceType])
 
-  useEffect(() => {
-      console.log(`🚀 ~ useEffect ~ props.isDesktop:`, props.isDesktop)
-      console.log(`🚀 ~ useEffect ~ props.isMobile:`, props.isMobile)
+  // useEffect(() => {
+  //     console.log(`🚀 ~ useEffect ~ props.isDesktop:`, props.isDesktop)
+  //     console.log(`🚀 ~ useEffect ~ props.isMobile:`, props.isMobile)
 
-      setIsMobile((prevVal) => !prevVal)
-      setIsDesktop((prevVal) => !prevVal)
-  }, [props.isMobile, props.isDesktop, setIsMobile, setIsDesktop])
+  //     // setIsMobile((prevVal) => !prevVal)
+  //     // setIsDesktop((prevVal) => !prevVal)
+  // }, [props.isMobile, props.isDesktop, setIsMobile, setIsDesktop])
 
   useEffect(() => {
     if (axiosError?.isAxiosError && axiosError.message !== undefined) {
@@ -147,15 +147,15 @@ const ShortenForm = (props: Props) => {
     // matches will be true or false based on the value for the media query
   }
 
-  const Desktop = (props: { children: any }) => {
-    const isDesktop = useMediaQuery({ minWidth: 1024 })
-    return isDesktop ? props.children : null
-  }
+  // const Desktop = (props: { children: any }) => {
+  //   const isDesktop = useMediaQuery({ minWidth: 1024 })
+  //   return isDesktop ? props.children : null
+  // }
 
-  const Mobile = (props: { children: any }) => {
-    const isMobile = useMediaQuery({ maxWidth: 1023 })
-    return isMobile ? props.children : null
-  }
+  // const Mobile = (props: { children: any }) => {
+  //   const isMobile = useMediaQuery({ maxWidth: 1023 })
+  //   return isMobile ? props.children : null
+  // }
   
   return (
     <div className="shorten-form-elements">
@@ -186,24 +186,24 @@ const ShortenForm = (props: Props) => {
               required 
             />
             {/* <MediaQuery maxWidth={1023} onChange={handleMediaQueryChange}> */}
-            <Mobile>
-              <FormError 
+            {/* <Mobile> */}
+              {isMobile && <FormError 
                 // isDesktop={isDesktop} 
                 // isMobile={isMobile} 
                 formErrors={formState.errors} 
-              />
-            </Mobile>
+              />}
+            {/* </Mobile> */}
             {/* </MediaQuery> */}
             <input type="submit" className="submit-btn" value="Shorten It!" />
           </div>
           {/* <MediaQuery minWidth={1024} onChange={handleMediaQueryChange}> */}
-          <Desktop>
-              <FormError 
-                isDesktop={isDesktop} 
-                isMobile={isMobile} 
+          {/* <Desktop> */}
+              {isDesktop && <FormError 
+                // isDesktop={isDesktop} 
+                // isMobile={isMobile} 
                 formErrors={formState.errors} 
-              />
-          </Desktop>
+              />}
+          {/* </Desktop> */}
           {/* </MediaQuery> */}
         </form>
     </div>

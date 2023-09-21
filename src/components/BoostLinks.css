@@ -1,5 +1,6 @@
 .boost-container {
-    background: url('../images/bg-boost-mobile.svg') var(--dark-violet);
+    background-color: var(--dark-violet);
+    background-image: url('../images/bg-boost-mobile.svg');
     background-size: cover;
     width: 100%;
     display: flex;
@@ -35,22 +36,23 @@
 
 @media (min-width: 1024px) {
 
-.boost-container {
-    background: url('../images/bg-boost-desktop.svg') var(--dark-violet);
-    /* height: 250px; */
-    padding-block: 5.7rem;
-    /* background-size: cover;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    flex-direction: column; */
-}
+    .boost-container {
+        /* background-color: var(--dark-violet); */
+        background-image: url('../images/bg-boost-desktop.svg');
+        /* height: 250px; */
+        padding-block: 5.7rem;
+        /* background-size: cover;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        flex-direction: column; */
+    }
 
-.boost-container h1 {
-    font-size: 40px;
-    letter-spacing: -1px;
-}
+    .boost-container h1 {
+        font-size: 40px;
+        letter-spacing: -1px;
+    }
 
 
 }

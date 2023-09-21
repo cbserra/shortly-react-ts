@@ -42,7 +42,7 @@ const ShortenResultList = (props : Props) => {
     useEffect(() => {
         function buildShortenResultCards() {
             const executeScroll = () => {
-                if (isValid && isSubmitSuccessful && scrollToRef.current !== null) {
+                if (isSubmitSuccessful && scrollToRef.current !== null) {
                     scrollToRef.current.scrollIntoView({behavior: 'smooth'})
                 }
             }
