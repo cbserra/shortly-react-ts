@@ -13,17 +13,17 @@ type MenuLink = {
     classNames?: string | undefined
     id?: string | undefined
     title?: string
-    useButton?: boolean
-    buttonClassname?: string
+    useButton: boolean
+    buttonClassname?: string 
 }
 
 const MENU_LINKS: MenuLink[] = [
-    {id: "features-link", title: "Features" },
-    {id: "pricing-link", title: "Pricing" },
-    {id: "resources-link", title: "Resources" },
+    {id: "features-link", title: "Features", useButton: true, buttonClassname: 'button-link' },
+    {id: "pricing-link", title: "Pricing", useButton: true, buttonClassname: 'button-link' },
+    {id: "resources-link", title: "Resources", useButton: true, buttonClassname: 'button-link' },
     {classNames: 'hor-line', useButton: false },
-    {id: "login-link", classNames: "push-right", title: "Login" },
-    {id: "sign-up-link",classNames: "sign-up", buttonClassname: "round-blue-btn", title: "Sign Up" },
+    {id: "login-link", classNames: "push-right", title: "Login", useButton: true, buttonClassname: 'button-link' },
+    {id: "sign-up-link", classNames: "sign-up", buttonClassname: "round-blue-btn", title: "Sign Up", useButton: true },
 ]
 
 const Menu = (props: Props) => {
@@ -31,21 +31,34 @@ const Menu = (props: Props) => {
     //     return toggleMenu === undefined ? '' : (toggleMenu ? 'show' : 'hide')
     // }
 
+    type LinkProp = {
+        link: MenuLink
+        // keyProp: number
+    }
+
     type MenuProps = {
         menuLinks: MenuLink[]
     }
 
-    const MenuLinks = (props: MenuProps) => {
+    const MenuLink = (props: LinkProp) => {
+        // if (props.link.useButton) {
+            return (
+                <li key={props.link.id} id={props.link.id} className={props.link.classNames}>
+                    { props.link.useButton && <button className={props.link.buttonClassname}>{props.link.title}</button> }
+                </li>
+            )
+        // } else {
+            // return (
+                // <li id={props.link.id} className={props.link.classNames}>
+                // </li>               
+            // )
+        // }
+    }
+
+    const MenuList = (props: MenuProps) => {
         return (
             <ul id="nav-menu" className={classNames}>
-                {props.menuLinks
-                    .map((link, index) => 
-                        <li key={index} id={link.id} className={link.classNames}>
-                            <button className={link.buttonClassname ? link.buttonClassname : 'button-link'}>
-                                {link.title}
-                            </button>
-                        </li>)
-                }
+                {props.menuLinks.map((link, index) => <MenuLink key={index} link={link} />)}
             </ul>
         )
     }
@@ -96,7 +109,7 @@ const Menu = (props: Props) => {
     // }, [toggleMenu, deviceType])
     
     return (
-        <MenuLinks key={1}  menuLinks={MENU_LINKS} />
+        <MenuList menuLinks={MENU_LINKS} />
     )
 }
 

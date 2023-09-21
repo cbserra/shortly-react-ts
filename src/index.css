@@ -41,12 +41,12 @@ div#root {
   justify-content: center;
 }
 
-button {
+button, input[type='submit'] {
   background: var(--cyan);
   color: var(--pretty-darn-white);
 }
 
-button:hover {
+button:hover, input[type='submit']:hover {
   cursor: pointer;
   background: var(--light-cyan);
 }

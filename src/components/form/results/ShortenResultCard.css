@@ -55,6 +55,10 @@ button.copy-btn {
     width: 100%;
 }
 
+button.copy-btn:hover {
+    background-color: var(--light-cyan);
+}
+
 button.copy-btn.click {
     background-color: var(--dark-violet);
 }
