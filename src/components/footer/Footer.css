@@ -100,10 +100,12 @@
 
 .icon-container > a {
     color: var(--pretty-darn-white);
+    /* fill: var(--pretty-darn-white); */
 }
 
 .icon-container > a:hover {
     color: var(--cyan);
+    /* fill: var(--cyan); */
 }
 
 
