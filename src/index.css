@@ -70,6 +70,7 @@ button.round-blue-btn:hover {
 
 button.button-link {
   all: unset;
+  font-family: inherit;
   cursor: pointer;
 }
 

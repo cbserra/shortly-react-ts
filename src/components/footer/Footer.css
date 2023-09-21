@@ -142,6 +142,15 @@
         text-align: left;
     }
 
+    .list-container button.button-link {
+        color: var(--gray);
+        font-weight: 500;
+    }
+
+    .list-container button.button-link:hover {
+        color: var(--cyan);
+    }
+
     .icon-container {
         column-gap: 2.2rem;
     }

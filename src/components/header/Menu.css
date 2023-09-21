@@ -83,10 +83,10 @@ ul#nav-menu li.sign-up > button.round-blue-btn {
         width: fit-content;
     }
 
-    ul#nav-menu li:hover {
+    /* ul#nav-menu li:hover {
         cursor: pointer;
         color: var(--very-dark-blue);
-    }
+    } */
 
     ul#nav-menu li.sign-up:hover {
         color: var(--pretty-darn-white);
@@ -99,6 +99,16 @@ ul#nav-menu li.sign-up > button.round-blue-btn {
 
     .push-right {
         margin-left: auto;
+    }
+
+    ul#nav-menu  button.button-link {
+        color: var(--dark-gray);
+        font-weight: 700;
+    }
+
+    ul#nav-menu button.button-link:hover {
+        cursor: pointer;
+        color: var(--very-dark-blue);
     }
 
     ul#nav-menu li.sign-up > button.round-blue-btn {
