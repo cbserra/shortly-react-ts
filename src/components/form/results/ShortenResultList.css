@@ -1,5 +1,4 @@
 div.shorten-result-container {
-    /* background: var(--pretty-darn-white); */
     border-radius: 5px;
     width: 87.2vw;
     display: flex;
@@ -14,7 +13,6 @@ div.shorten-result-container {
 @media (min-width: 1024px) {
 
     div.shorten-result-container {
-        /* height: 72px; */
         row-gap: 1.6rem;
     }
 }

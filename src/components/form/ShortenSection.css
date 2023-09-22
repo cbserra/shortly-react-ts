@@ -7,7 +7,6 @@ div.shorten-section-container {
 }
 
 div.shorten-url-container {
-    /* background: linear-gradient(0turn, var(--light-gray) 50%, var(--pretty-darn-white) 50%);*/
     background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,1) 48%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.10) 52%, rgba(242,242,242,1) 54%, rgba(242,242,242,1) 100%);
     display: flex;
@@ -15,18 +14,8 @@ div.shorten-url-container {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    /* width: 87.2vw;
-    transform: translateY(50%);
-    max-width: 1110px; */
 }
 
 div.shorten-resp-container {
     width: 100%;
-}
-
-@media (min-width: 1024px) {
-
-    div.shorten-resp-container {
-        /* width: 80%; */
-    }
 }

@@ -1,10 +1,8 @@
 import React, { RefObject, useEffect, useRef } from "react"
 import './ShortenResultList.css'
-import { ShortenResult } from "../../../types/ShortenTypes"
+import { LS_SHORTEN_RESPONSES, ShortenResult } from "../../../types/ShortenTypes"
 import ShortenResultCard from "./ShortenResultCard"
 import { useFormContext } from "react-hook-form"
-
-const LS_SHORTEN_RESPONSES = 'shortenResponses'
 
 type Props = {
     shortenResultCards: JSX.Element[]

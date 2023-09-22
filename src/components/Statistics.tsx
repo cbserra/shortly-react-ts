@@ -40,38 +40,12 @@ const Statistics = () => {
                     text='Gain insights into who is clicking your links. 
                             Knowing when and where people engage with your content helps inform better decisions.'
                 />
-                {/* <div className="article" id="detailed-records">
-                    <header>
-                        <div className="icon"></div>
-                        <h2>Detailed Records</h2>
-                    </header>
-                    <div className="text">
-                        <p>
-                            Gain insights into who is clicking your links. 
-                            Knowing when and where people engage with your content helps inform better decisions.
-                        </p>
-                    </div>
-                </div> */}
                 <StatArticle 
                     cssId='fully-customizable' 
                     heading='Fully Customizable' 
                     text='Improve brand awareness and content discoverability 
                             through customizable links, supercharging audience engagement.'
                 />
-                
-
-                {/* <div className="article" id="fully-customizable">
-                    <header>
-                        <div className="icon"></div>
-                        <h2>Fully Customizable</h2>
-                    </header>
-                    <div className="text">
-                        <p>
-                            Improve brand awareness and content discoverability 
-                            through customizable links, supercharging audience engagement.
-                        </p>
-                    </div>
-                </div> */}
             </div>
 
         </div>

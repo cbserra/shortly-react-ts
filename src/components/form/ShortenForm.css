@@ -45,7 +45,6 @@ form.shorten-form input.url-text::placeholder {
 }
 
 form.shorten-form input.submit-btn {
-    /* background-color: var(--cyan); */
     font-style: normal;
     font-weight: 700;
     color: var(--pretty-darn-white);

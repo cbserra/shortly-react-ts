@@ -5,7 +5,7 @@ ul#nav-menu {
     justify-content: space-between;
     flex-direction: column;
     min-width: 100%;
-    top: 4rem;
+    top: 6rem;
     border-radius: 10px;
     padding: 4rem 2.4rem;
     transition: .5s; 
@@ -14,8 +14,6 @@ ul#nav-menu {
 }
 
 ul#nav-menu {
-/* ,
-ul#nav-menu.hide { */
     display: none;
 }
 
@@ -24,15 +22,12 @@ ul#nav-menu.show {
 }
 
 ul#nav-menu > li {
-/* > button { */
     list-style-type: none;
     font-style: normal;
     font-weight: 700;
     font-size: 1.8rem;
     line-height: 2.7rem;
     width: 100%;
-    /* padding: 15px; */
-    /* color: #FFFFFF; */
     text-align: center;
 }
 
@@ -57,9 +52,6 @@ ul#nav-menu.show > li.hor-line {
 }
 
 ul#nav-menu > li.sign-up > button.round-blue-btn {
-    /* background: var(--cyan);
-    border-radius: 28px;
-    color: var(--pretty-darn-white); */
     padding: 8px 24px;
     width: 100%;
 }
@@ -68,16 +60,15 @@ ul#nav-menu > li.sign-up > button.round-blue-btn {
 
     ul#nav-menu {
         background-color: transparent;
-        position: initial;
+        position: unset;
         display: flex;
         justify-content: center;  
         align-items: center;
         flex-direction: row;
-        /* justify-content: space-between; */
         flex-grow: 1;
         min-height: auto;
         min-width: auto;
-        margin: unset;
+        margin: initial;
         margin-left: 4.5rem;
         padding: unset;
         column-gap: 3.2rem;
@@ -85,9 +76,6 @@ ul#nav-menu > li.sign-up > button.round-blue-btn {
     }
     
     ul#nav-menu > li {
-        /* list-style-type: none; */
-        /* font-style: normal; */
-        /* font-weight: 700; */
         font-size: 1.5rem;
         line-height: 2.3rem;
         color: var(--grayish-violet);
@@ -95,17 +83,11 @@ ul#nav-menu > li.sign-up > button.round-blue-btn {
         width: fit-content;
     }
 
-    /* ul#nav-menu li:hover {
-        cursor: pointer;
-        color: var(--very-dark-blue);
-    } */
-
     ul#nav-menu > li.sign-up:hover {
         color: var(--pretty-darn-white);
     }
 
     ul#nav-menu > li.hor-line {
-    /* ul#nav-menu.desktop.hide li.hor-line  */
         display: none;
     }
 
@@ -115,15 +97,9 @@ ul#nav-menu > li.sign-up > button.round-blue-btn {
 
     ul#nav-menu > li > button.button-link {
         color: var(--dark-gray);
-        /* font-weight: 700; */
     }
 
     ul#nav-menu > li > button.button-link:hover {
-        /* cursor: pointer; */
         color: var(--very-dark-blue);
-    }
-
-    ul#nav-menu > li.sign-up > button.round-blue-btn {
-        /* width: max-content; */
     }
 }

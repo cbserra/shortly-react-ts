@@ -6,7 +6,6 @@ const Hamburger = (props: { onClickFun: () => void }) => (
         <button onClick={props.onClickFun}>
             <HamburgerIcon />
         </button>
-        {/* <i className="fa-solid fa-bars"></i> */}
     </div>
 )
 

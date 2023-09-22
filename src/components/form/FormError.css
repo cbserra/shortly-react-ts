@@ -1,6 +1,5 @@
 
 div.error-message {
-    /* order: 2; */
     width: 100%;
     text-align: left;
 }
@@ -13,15 +12,12 @@ span.error-message {
     line-height: 1.8rem;
     letter-spacing: 0.0818182px;
     text-align: left;
-    /* margin-right: auto; */
 }
 
 @media (min-width: 1024px) {
 
     div.error-message {
         height: 2.0rem;
-        /* text-align: left; */
-        /* flex-grow: 1; */
     }
     
     span.error-message {

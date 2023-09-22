@@ -2,6 +2,10 @@ import { AxiosAdapter, AxiosError, AxiosPromise, AxiosRequestConfig, AxiosRespon
 import { RefetchOptions, UseAxiosResult } from "axios-hooks"
 import { UseFormRegister } from "react-hook-form"
 
+// Local Storage Pre-existing Shortened URLs Key
+export const LS_SHORTEN_RESPONSES = 'shortenResponses'
+
+// Shorten API GET Request Endpoint
 export const SHORTEN_API_URL = 'https://api.shrtco.de/v2/shorten'
 
 export const SHORTEN_REQ_CONF = {
@@ -14,10 +18,10 @@ export const SHORTEN_REQ_OPTS = {
   useCache: true
 }
 
-export enum DeviceType {
-  Mobile = "MOBILE",
-  Desktop = "DESKTOP"
-}
+// export enum DeviceType {
+//   Mobile = "MOBILE",
+//   Desktop = "DESKTOP"
+// }
 
 // export interface ShortenResponse {
 //   ok: boolean
@@ -39,11 +43,11 @@ export interface ShortenResult  {
     original_link: string
 }
 
-export interface PartialShortenResult  {
-    code?: string,
-    short_link?: string,
-    original_link?: string
-}
+// export interface PartialShortenResult  {
+//     code?: string,
+//     short_link?: string,
+//     original_link?: string
+// }
 
 export type ShortenRequestConfig = {
     adapter?: AxiosAdapter

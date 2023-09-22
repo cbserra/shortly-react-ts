@@ -1,29 +1,16 @@
 nav {
     position: relative;
-    /* min-width: 90%; */
-    /* min-height: 40px; */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* margin: 40px 25px auto 25px; */
     margin: unset;
-    /* height: 100%; */
     width: 100%;
 }
 
-/* nav svg {
-    height: 100%;
-} */
-
 @media (min-width: 1024px) {
     nav {
-        /* min-width: 80%; */
-        /* min-height: 40px; */
         display: flex;
         align-items: center;
         justify-content: space-between;
-        /* margin-block: 50px; */
-        /* margin: unset; */
-        /* max-width: 1110px; */
     }
 }

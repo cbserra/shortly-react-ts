@@ -7,9 +7,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* height: 300px; */
     padding-block: 9rem;
-    /* padding-inline: auto; */
 }
 
 .boost-container h1 {
@@ -37,16 +35,8 @@
 @media (min-width: 1024px) {
 
     .boost-container {
-        /* background-color: var(--dark-violet); */
         background-image: url('../images/bg-boost-desktop.svg');
-        /* height: 250px; */
         padding-block: 5.7rem;
-        /* background-size: cover;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center; 
-        flex-direction: column; */
     }
 
     .boost-container h1 {

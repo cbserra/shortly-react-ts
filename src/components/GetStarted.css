@@ -10,16 +10,11 @@ section.get-started {
     row-gap: 3.7rem;
 }
 
-/* section.get-started figure {
-    margin-top: 50px;
-} */
-
 figcaption.text {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* width: 60%; */
     text-align: center;
     padding: 0;
     margin: 0;
@@ -37,7 +32,6 @@ figcaption.text > div.text-container {
 figcaption.text h1 {
     font-size: 42px;
     line-height: 48px;
-    /* text-align: center; */
     letter-spacing: -1.05px;
     font-style: normal;
     font-weight: 700;
@@ -47,7 +41,6 @@ figcaption.text h1 {
 
 figcaption.text p {    font-size: 18px;
     line-height: 30px;
-    /* text-align: center; */
     letter-spacing: 0.122727px;
     font-style: normal;
     font-weight: 500;
@@ -73,23 +66,15 @@ figure.image {
     align-items: flex-end;
     justify-content: flex-end;
     right: -5rem;
-    /* width: 90%; */
-    /* margin-left: auto; */
-    /* overflow: hidden; */
 }
 
 figure.image img {
     position: relative;
-    /* display: flex; */
     width: 51.1rem;
-    /* width: 36rem; */
-    /* height: 300px; */
-    /* align-self: flex-end; */
 }
 
 @media (min-width: 1024px) {
     section.get-started {
-        /* width: 80%; */
         flex-direction: row;
     }
 
@@ -129,60 +114,10 @@ figure.image img {
         position: relative;
         right: -25rem;
         width: 40%;
-        /* margin-right: auto; */
-        /* overflow: visible; */
-        /* z-index: 100; */
-        /* margin-left: auto; */
-        /* overflow: hidden; */
-        /* margin-right: -5%; */
     }
 
     figure.image img {
-        /* width: 100%; */
         width: 73.3rem;
     }
 
 }
-
-/* @media (max-width: 1023px) {
-    section.get-started {
-        
-        width: 100%;
-    }
-
-    section.get-started figure {
-        margin-top: 50px;
-    }
-
-    figure.image {
-        width: 90%;
-        margin-right: auto;
-        overflow: hidden;
-    }
-
-    figure.image img {
-        width: 327px;
-        height: 300px;
-        
-    }
-
-    figcaption.text {
-        width: 90%;
-        text-align: center;
-    }
-
-    figcaption.text h1 {
-        font-size: 42px;
-        line-height: 48px;
-        text-align: center;
-        letter-spacing: -1.05px;
-    }
-
-    figcaption.text p {
-        font-size: 18px;
-        line-height: 30px;
-        text-align: center;
-        letter-spacing: 0.122727px;
-    } 
-    
-} */

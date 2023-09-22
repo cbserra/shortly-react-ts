@@ -9,8 +9,6 @@ div.mobile-icon-wrapper > button {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* display: inline-block; */
-    /* color: var(--dark-gray); */
     font-size: 27px;
     border: none;
     background-color: transparent;

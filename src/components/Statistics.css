@@ -5,7 +5,6 @@
     justify-content: center;
     width: 100%;
     margin-block: 8rem;
-    /* max-width: 37.5rem; */
     row-gap: 9.2rem;
     text-align: center;
 }
@@ -26,7 +25,6 @@ div.statistics > header > h1 {
     font-weight: 700;
     font-size: 28px;
     line-height: 48px;
-    /* identical to box height, or 171% */
     
     text-align: center;
     letter-spacing: -0.7px;
@@ -40,7 +38,6 @@ div.statistics > header > p {
     font-weight: 500;
     font-size: 16px;
     line-height: 28px;
-    /* or 175% */
     text-align: center;
     letter-spacing: 0.109091px;
     color: #9E9AA8;
@@ -143,14 +140,9 @@ div#fully-customizable > header > div.icon {
         font-weight: 700;
         font-size: 40px;
         line-height: 48px;
-        /* identical to box height, or 120% */
         text-align: center;
         letter-spacing: -1px;
     }
-    
-    /* div.statistics > header > p {
-
-    } */
     
     div.articles {
         background: url('../images/cyan-line.svg') center no-repeat;
@@ -172,8 +164,6 @@ div#fully-customizable > header > div.icon {
         text-align: left;
         padding-inline: 3.2rem;
         padding-bottom: 4.1rem;
-        /* margin: 15px;
-        padding-inline: 3.2rem; */
     }
 
     div#brand-recognition  {
@@ -188,18 +178,6 @@ div#fully-customizable > header > div.icon {
         align-self: flex-end;
         margin-bottom: 0;
     }
-    
-    div.articles > div:nth-child(1) {
-        /* align-self: flex-start; */
-    }
-
-    div.articles > div:nth-child(2) {
-        /* align-self: center; */
-    }
-    
-    div.articles > div:nth-child(3) {
-        /* align-self: flex-end; */
-    }
 
     div.article > header {
         display: flex;
@@ -208,22 +186,11 @@ div#fully-customizable > header > div.icon {
     }
 
     div.article > header > div.icon {
-        /* background-color: var(--dark-violet); */
         background-position: center;
-        /* border-radius: 50%;
-        height: 88px;
-        width: 88px; */
-        /* margin: 0 15px -25px 15px; */
-        /* transform: translateY(-5rem); */
         align-self: flex-start;
     }
     
     div.article > header > h2 {
         align-self: flex-start;
-        /* margin: 15px; */
-    }
-    
-    div.article > div.text {
-        /* margin: 15px; */
     }
 }
