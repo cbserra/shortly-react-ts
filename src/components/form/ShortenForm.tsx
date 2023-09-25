@@ -1,10 +1,11 @@
 import React, { BaseSyntheticEvent, useEffect } from 'react'
 import { SubmitHandler, useFormContext } from 'react-hook-form'
-import { useLocalStorageCachedAxios } from '../../hooks/useLocalStorageCachedAxios'
-import { ShortenResult, ShortenSuccessResponse, ShortenErrorResponse, SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS, FormValues } from '../../types/ShortenTypes'
+import { ShortenResult, ShortenErrorResponse, FormValues, LS_SHORTEN_RESPONSES } from '../../types/ShortenTypes'
 import { AxiosError } from 'axios'
 import { FormError } from './FormError'
 import './ShortenForm.css'
+import localforage from 'localforage'
+import { api, forageStore } from '../../services/ShortenApi'
 
 type Props = {
     isMobile: boolean
@@ -20,20 +21,60 @@ const ShortenForm = (props: Props) => {
   const formData = useFormContext<FormValues>()
   const { handleSubmit, setError, formState, register } = formData
 
-  const [{ loading, error: axiosError }, fetch] = useLocalStorageCachedAxios<ShortenSuccessResponse, any, ShortenErrorResponse>(SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS)
+  // const [{ loading, error: axiosError }, fetch] = useLocalStorageCachedAxios<ShortenSuccessResponse, any, ShortenErrorResponse>(SHORTEN_REQ_CONF, SHORTEN_REQ_OPTS)
 
-  useEffect(() => {
-    if (axiosError?.isAxiosError && axiosError.message !== undefined) {
-      const axiosErrorJson = JSON.stringify(axiosError.message)
-      console.error(`❗️ ~ useEffect ~ axiosErrorJson:`, axiosErrorJson)
+  useEffect (() => {
+    async function queryLocalStorage(): Promise<void> {
+      try {
+        const value = localforage.getItem<ShortenResult[]>(LS_SHORTEN_RESPONSES);
+        // This code runs once the value has been loaded
+        // from the offline store.
+        console.log(value);
+      } catch (err) {
+        // This code runs if there were any errors.
+        console.log(err);
+      }
       
-      setError("url", {message: `Axios Error detected during fetch in useEffect: ${axiosErrorJson}`})
+      const lsShortenResults = localforage.getItem<ShortenResult[]>(LS_SHORTEN_RESPONSES)
+      setShortenResponses(await lsShortenResults || [])
     }
-  }, [axiosError, setError])
 
-  useEffect(() => {
-    console.log(`🚀 ~ useEffect ~ loading:`, loading)
-  }, [loading])
+    queryLocalStorage()
+  }, [setShortenResponses])
+
+    //   useEffect(() => {
+    //     checkUserLoggedIn()
+    // }, [])
+
+    // // Check if user is logged in
+    // const checkUserLoggedIn:() => Promise<void> = async () => {
+    //     console.log('checkUserLoggedIn')
+
+    //     const res = await fetch(`${NEXT_URL}/api/user`)
+    //     const data = await res.json()
+
+    //     if (res.ok) {
+    //         setUser(data.user)
+
+    //         console.log('data.user', data.user)
+    //         router.push('/account/dashboard')
+    //     } else {
+    //         setUser(null)
+    //     }
+    // }
+
+  // useEffect(() => {
+  //   if (axiosError?.isAxiosError && axiosError.message !== undefined) {
+  //     const axiosErrorJson = JSON.stringify(axiosError.message)
+  //     console.error(`❗️ ~ useEffect ~ axiosErrorJson:`, axiosErrorJson)
+      
+  //     setError("url", {message: `Axios Error detected during fetch in useEffect: ${axiosErrorJson}`})
+  //   }
+  // }, [axiosError, setError])
+
+  // useEffect(() => {
+  //   console.log(`🚀 ~ useEffect ~ loading:`, loading)
+  // }, [loading])
 
   const onSubmit: SubmitHandler<FormValues> = 
     async (
@@ -43,12 +84,25 @@ const ShortenForm = (props: Props) => {
     evt?.preventDefault()
     console.debug(`🚀 ~ constonSubmit:SubmitHandler<FormValues>= ~ form:`, form)
 
-    try {
-      fetch({ 
-        // ...SHORTEN_REQ_CONF,
-        params: form //{ url: form['url'] } //reqParams 
-      })
-      .then((response) => {
+    // try {
+      api({
+        params: form
+        // url: SHORTEN_API_URL,
+        // method: 'get'
+      // }).then(async (response) => {
+      //     // Do something fantastic with response.data \o/
+      //     console.log('Request response:', response)
+
+      //     // Interacting with the store, see `localForage` API.
+      //     const length = await Object.keys(cache.store).length
+
+      //     console.log('Cache store length:', length)
+      //   })
+
+      // fetch({ 
+      //   // ...SHORTEN_REQ_CONF,
+      //   params: form //{ url: form['url'] } //reqParams 
+      }).then((response) => {
         console.debug(`🚀 ~ .then ~ response:`, response)
             
         if (response.data.ok && response.data.result !== undefined) {
@@ -59,28 +113,55 @@ const ShortenForm = (props: Props) => {
             console.debug("already have a response with matching code: " + success.code)
             return
           }
-          if (shortenResponses && shortenResponses.length > 0) {
-            setShortenResponses((prevResps: ShortenResult[]) => [...prevResps, success])
-          } else {
-            setShortenResponses([success])
-          }
-        } else if (axiosError?.isAxiosError && axiosError.message !== undefined) {
-          console.log(`🚀 ~ .then ~ error:`, axiosError)
 
-          console.error(`❗️ ~ .then ~ error.code:`, axiosError.code)
-          console.error(`❗️ ~ .then ~ error.cause:`, axiosError.cause)
-          setError("url", {message: `Axios Error detected during refetch: ${JSON.stringify(axiosError)}`})
-        }
+          const updatedResponses: ShortenResult[] = []
+          if (shortenResponses && shortenResponses.length > 0) {
+            updatedResponses.concat(...shortenResponses, success)
+            // setShortenResponses((prevResps: ShortenResult[]) => [...prevResps, success])
+          } else {
+            updatedResponses.concat(success)
+            // setShortenResponses([success])
+          }
+
+          forageStore.setItem(LS_SHORTEN_RESPONSES, updatedResponses)
+            .then(
+              function(value) {
+                setShortenResponses(value)
+              }, 
+              function(error) {
+                const axiosShortenErr: AxiosError<ShortenErrorResponse> = error.response?.data.error
+                console.error(`❗️ ~ ShortenForm ~ axiosShortenErr:`, axiosShortenErr)
+                const errJson = JSON.stringify(axiosShortenErr)
+                console.error(`❗️ ~ errJson:`, errJson)
+                setError("url", {message: `Error thrown from API: ${errJson}`});
+              }
+            );
+        } 
+        // else if (response.data.)
+        // } else if (axiosError?.isAxiosError && axiosError.message !== undefined) {
+        //   console.log(`🚀 ~ .then ~ error:`, axiosError)
+
+        //   console.error(`❗️ ~ .then ~ error.code:`, axiosError.code)
+        //   console.error(`❗️ ~ .then ~ error.cause:`, axiosError.cause)
+        //   setError("url", {message: `Axios Error detected during refetch: ${JSON.stringify(axiosError)}`})
+        // }
 
         evt?.target.reset()
+    }).catch((err: AxiosError<ShortenErrorResponse, any>) => {
+        console.error(`❗️ ~ ShortenForm ~ err:`, err)
+        const axiosShortenErr: ShortenErrorResponse | undefined = err.response?.data
+        console.log(`🚀 ~ ShortenForm ~ axiosShortenErr:`, axiosShortenErr)
+        const errJson = JSON.stringify(axiosShortenErr)
+        console.error(`❗️ ~ errJson:`, errJson)
+        setError("url", {message: `Error thrown from API: ${errJson}`});
     })
-    } catch(err: any) {
-      const axiosShortenErr: AxiosError<ShortenErrorResponse> = err.response?.data.error
-      console.log(`🚀 ~ ShortenForm ~ axiosShortenErr:`, axiosShortenErr)
-      const errJson = JSON.stringify(axiosShortenErr)
-      console.error(`❗️ ~ errJson:`, errJson)
-      setError("url", {message: `Error thrown from API: ${errJson}`});
-    }
+    // } catch(err: any) {
+    //   const axiosShortenErr: AxiosError<ShortenErrorResponse> = err.response?.data.error
+    //   console.log(`🚀 ~ ShortenForm ~ axiosShortenErr:`, axiosShortenErr)
+    //   const errJson = JSON.stringify(axiosShortenErr)
+    //   console.error(`❗️ ~ errJson:`, errJson)
+    //   setError("url", {message: `Error thrown from API: ${errJson}`});
+    // }
   }
 
   const handleMediaQueryChange = (matches: any) => {

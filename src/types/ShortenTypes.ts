@@ -4,10 +4,10 @@ import { UseFormRegister } from "react-hook-form"
 
 // Local Storage Pre-existing Shortened URLs Key
 export const LS_SHORTEN_RESPONSES = 'shortenResponses'
-
 // Shorten API GET Request Endpoint
 export const SHORTEN_API_URL = 'https://api.shrtco.de/v2/shorten'
 
+// Axios Config / Options
 export const SHORTEN_REQ_CONF = {
   baseURL: SHORTEN_API_URL,
   method: 'get'
@@ -18,15 +18,18 @@ export const SHORTEN_REQ_OPTS = {
   useCache: true
 }
 
-// export enum DeviceType {
-//   Mobile = "MOBILE",
-//   Desktop = "DESKTOP"
+// export function generateAxiosErrorMessage(error: AxiosError): string {
+//   return `Axios Error detected during refetch: ${JSON.stringify(error)}`
 // }
 
-// export interface ShortenResponse {
-//   ok: boolean
-//   resp_wrapper?: ShortenSuccessResponse | ShortenErrorResponse
-// }
+export function generateErrorMessage(error: string | AxiosError | any): string {
+  return `Error detected during procecessing: ${JSON.stringify(error)}`
+}
+
+export interface ShortenResponse {
+  ok: boolean
+  resp_wrapper?: ShortenSuccessResponse | ShortenErrorResponse
+}
 
 export interface ShortenSuccessResponse {
     ok: boolean,
@@ -88,4 +91,9 @@ export interface ShortenForm {
     setShortenResponsesFun: React.Dispatch<React.SetStateAction<ShortenResult[]>>
     error: AxiosError<ShortenErrorResponse, any> | null
     useAxiosResult: UseAxiosResult<any, any, any>
+}
+
+export interface LocalForageError {
+  message: string
+  cause: string
 }
