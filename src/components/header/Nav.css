@@ -1,0 +1,30 @@
+nav {
+    position: relative;
+    /* min-width: 90%; */
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px 25px auto 25px;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    nav {
+        /* min-width: 80%; */
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* margin-block: 50px; */
+        margin: unset;
+        /* max-width: 1110px; */
+    }
+}
+  
+/* @media (max-width: 1023px) {
+    nav {
+        
+        margin: 25px auto 50px auto;
+    }
+} */

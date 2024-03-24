@@ -1,31 +1,61 @@
 section.get-started {
     display: flex;
+    flex-direction: column-reverse;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    width: 87.2vw;
+    max-width: 1110px;
+    margin-block-start: 6rem;
+    margin-block-end: 10rem;
+    row-gap: 3.7rem;
 }
 
-figure.text {
-    width: 60%;
-    text-align: left;
+/* section.get-started figure {
+    margin-top: 50px;
+} */
+
+figcaption.text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* width: 60%; */
+    text-align: center;
     padding: 0;
     margin: 0;
+    max-width: 37.5rem;
+    flex-direction: column;
+    row-gap: 3.2rem;
 }
 
-figure.text h1 {
+figcaption.text > div.text-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+}
+
+figcaption.text h1 {
+    font-size: 42px;
+    line-height: 48px;
+    /* text-align: center; */
+    letter-spacing: -1.05px;
     font-style: normal;
     font-weight: 700;
     color: var(--very-dark-blue);
     margin: 0;
 }
 
-figure.text p {
+figcaption.text p {    font-size: 18px;
+    line-height: 30px;
+    /* text-align: center; */
+    letter-spacing: 0.122727px;
     font-style: normal;
     font-weight: 500;
     color: var(--grayish-violet);
 }
 
-figure.text button {
+figcaption.text button {
+    width: fit-content;
     background: var(--cyan);
     border-radius: 28px;
     border: none;
@@ -38,32 +68,49 @@ figure.text button {
 }
 
 figure.image {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    right: -5rem;
+    /* width: 90%; */
+    /* margin-left: auto; */
     /* overflow: hidden; */
 }
 
 figure.image img {
-    /* overflow: hidden; */
+    position: relative;
+    /* display: flex; */
+    width: 51.1rem;
+    /* width: 36rem; */
+    /* height: 300px; */
+    /* align-self: flex-end; */
 }
 
 @media (min-width: 1024px) {
     section.get-started {
-        width: 80%;
+        /* width: 80%; */
+        flex-direction: row;
     }
 
-    figure.text {
-        width: 60%;
+    figcaption.text {
+        display: flex;
+        flex-direction: column;
+        width: max-content;
         text-align: left;
         padding: 0;
         margin: 0;
+        max-width: 58.5rem;
+        row-gap: 3.8rem;
     }
 
-    figure.text h1 {
+    figcaption.text h1 {
         font-size: 80px;
         line-height: 90px;
         letter-spacing: -2px;
     }
 
-    figure.text p {
+    figcaption.text p {
         font-size: 22px;
         line-height: 36px;
         letter-spacing: 0.15px;
@@ -71,21 +118,35 @@ figure.image img {
         margin-top: 0;
     }
 
+    figcaption.text button {
+        max-width: fit-content;
+    }
+
     figure.image {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        position: relative;
+        right: -25rem;
         width: 40%;
         /* margin-right: auto; */
         /* overflow: visible; */
         /* z-index: 100; */
-        margin-left: auto;
+        /* margin-left: auto; */
         /* overflow: hidden; */
         /* margin-right: -5%; */
     }
 
+    figure.image img {
+        /* width: 100%; */
+        width: 73.3rem;
+    }
+
 }
 
-@media (max-width: 1023px) {
+/* @media (max-width: 1023px) {
     section.get-started {
-        flex-direction: column-reverse;
+        
         width: 100%;
     }
 
@@ -96,32 +157,32 @@ figure.image img {
     figure.image {
         width: 90%;
         margin-right: auto;
-        /* overflow: hidden; */
+        overflow: hidden;
     }
 
     figure.image img {
-        /* width: 327px; */
+        width: 327px;
         height: 300px;
         
     }
 
-    figure.text {
+    figcaption.text {
         width: 90%;
         text-align: center;
     }
 
-    figure.text h1 {
+    figcaption.text h1 {
         font-size: 42px;
         line-height: 48px;
         text-align: center;
         letter-spacing: -1.05px;
     }
 
-    figure.text p {
+    figcaption.text p {
         font-size: 18px;
         line-height: 30px;
         text-align: center;
         letter-spacing: 0.122727px;
-    }
-
-}
+    } 
+    
+} */

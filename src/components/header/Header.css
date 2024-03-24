@@ -1,0 +1,13 @@
+header.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* width: 100%; */
+  width: 87.2vw;
+  background: var(--pretty-darn-white);
+  margin: 0;
+  /* padding-bottom: 125px; */
+  max-width: 1110px;
+  /* overflow-x: hidden; */
+}

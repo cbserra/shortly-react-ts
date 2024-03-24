@@ -1,53 +1,65 @@
 .App {
+  background-color: var(--pretty-darn-white);
   display: flex;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
   flex-direction: column;
+  /* max-width: 1110px; */
+  min-width: 375px;
   width: 100%;
   height: 100%;
 }
 
-header.app-header {
+div.container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   width: 100%;
-  background: var(--pretty-darn-white);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 0;
-  padding-bottom: 125px;
-  overflow-x: hidden;
+  /* height: 100%; */
+  /* max-width: 1110px; */
+}
+
+div.top-container {
+  background: #FFF;
+  /* box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  margin-bottom: .5rem; */
+}
+
+div.mid-container {
+  background-color: var(--light-gray);
 }
 
 main.app-main {
-  background-color: var(--light-gray);
-  position: relative;
+  /* background-color: var(--light-gray); */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  /* max-width: 1110px; */
 }
 
-man.app-footer {
+footer.app-footer {
   background: var(--nearly-black);
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  padding-block: 7.2rem;
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .App {
-    max-width: 1440px;
+    max-width: 1110px;
   }
-}
+} */
 
-@media (max-width: 1023px) {
+/* @media (max-width: 1023px) {
   .App {
     min-width: 375px;
     max-width: 375px;
   }
-}
+} */

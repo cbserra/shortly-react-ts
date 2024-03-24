@@ -1,0 +1,109 @@
+div.shorten-form-elements {
+    display: flex;
+    align-items: center;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+    justify-content: space-around;
+    flex-direction: column;
+    min-height: 160px;
+    background: url('../../images/bg-shorten-mobile.svg') var(--dark-violet);
+    background-size: cover;
+    padding: 25px;
+    width: 87.2vw;
+    max-width: 1110px;
+}
+
+form.shorten-form {
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    row-gap: 1rem;
+}
+
+form.shorten-form input {
+    border: none;
+    height: 48px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+form.shorten-form input.url-text {
+    font-size: 16px;
+    line-height: 36px;
+    letter-spacing: 0.15px;
+    font-style: normal;
+    font-weight: 500;
+    mix-blend-mode: normal;
+    padding: 0 25px;
+}
+
+form.shorten-form input.url-text::placeholder {
+    color: var(--very-dark-blue);
+    opacity: .5;
+}
+
+form.shorten-form input.submit-btn {
+    background-color: var(--cyan);
+    font-style: normal;
+    font-weight: 700;
+    color: var(--pretty-darn-white);
+    font-size: 18px;
+    line-height: 27px;
+}
+
+form.shorten-form > input:required:invalid {
+    border: 2px solid var(--error-red);
+    color: var(--error-red);
+}
+
+form.shorten-form > div.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: column;
+    row-gap: .8rem;
+}
+
+@media (min-width: 1024px) {
+
+    div.shorten-form-elements {
+        justify-content: center;
+        background: url('../../images/bg-shorten-desktop.svg') var(--dark-violet);
+        background-size: cover;
+        padding: 5.2rem 6.4rem 2.6rem 6.4rem;
+    }
+
+    form.shorten-form > div.input-container {
+        flex-direction: row;
+        column-gap: 2.4rem;
+        row-gap: unset;
+    }
+
+    form.shorten-form input {
+        border-radius: 10px;
+        height: 64px;
+        width: unset;
+    }
+
+    form.shorten-form input.url-text {
+        width: 100%;
+        font-size: 20px;
+        line-height: 36px;
+        letter-spacing: 0.15px;
+        mix-blend-mode: normal;
+        padding: 0 25px;
+    }
+
+    form.shorten-form input.submit-btn {
+        font-size: 20px;
+        line-height: 30px;
+        padding-inline: 4rem;
+    }
+
+    div.shorten-resp-container {
+        width: 80%;
+    }
+}

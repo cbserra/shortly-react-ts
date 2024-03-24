@@ -1,6 +1,21 @@
 import './Statistics.css'
 
 const Statistics = () => {
+
+    const StatArticle = (props: {cssId: string, heading: string, text: string}) => {
+        return (
+            <div className="article" id={props.cssId}>
+                <header>
+                    <div className="icon"></div>
+                    <h2>{props.heading}</h2>
+                </header>
+                <div className="text">
+                    <p>{props.text}</p>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="statistics">
             <header>
@@ -11,23 +26,21 @@ const Statistics = () => {
             </header>
 
             <div className="articles">
-                <div className="article" id="brand-recognition">
-                    <header>
-                        <div className="icon">
-                            {/* <img src={brandRecognition} alt="" /> */}
-                        </div>
-                        <h2>Brand Recognition</h2>
-                    </header>
-                    <div className="text">
-                        <p> 
-                            Boost your brand recognition with each click. 
-                            Generic links don’t mean a thing. 
-                            Branded links help instil confidence in your content.
-                        </p>
-                    </div>
-                </div>
+                <StatArticle 
+                    cssId='brand-recognition' 
+                    heading='Brand Recognition' 
+                    text='Boost your brand recognition with each click. 
+                                Generic links don’t mean a thing. 
+                                Branded links help instil confidence in your content.'
+                />
 
-                <div className="article" id="detailed-records">
+                <StatArticle 
+                    cssId='detailed-records' 
+                    heading='Detailed Records' 
+                    text='Gain insights into who is clicking your links. 
+                            Knowing when and where people engage with your content helps inform better decisions.'
+                />
+                {/* <div className="article" id="detailed-records">
                     <header>
                         <div className="icon"></div>
                         <h2>Detailed Records</h2>
@@ -38,9 +51,16 @@ const Statistics = () => {
                             Knowing when and where people engage with your content helps inform better decisions.
                         </p>
                     </div>
-                </div>
+                </div> */}
+                <StatArticle 
+                    cssId='fully-customizable' 
+                    heading='Fully Customizable' 
+                    text='Improve brand awareness and content discoverability 
+                            through customizable links, supercharging audience engagement.'
+                />
+                
 
-                <div className="article" id="fully-customizable">
+                {/* <div className="article" id="fully-customizable">
                     <header>
                         <div className="icon"></div>
                         <h2>Fully Customizable</h2>
@@ -51,7 +71,7 @@ const Statistics = () => {
                             through customizable links, supercharging audience engagement.
                         </p>
                     </div>
-                </div>
+                </div> */}
             </div>
 
         </div>
